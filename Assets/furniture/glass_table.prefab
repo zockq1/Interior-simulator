@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8922977878757082861}
   - component: {fileID: 8922977878757082859}
   - component: {fileID: 8922977878757082860}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: glass_table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81bb1d300559e0a4fb33e4d24e283cd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubeColor: {fileID: 0}
-  iscollision: 0
-  isdeployment: 0
-  isrelocation: 0

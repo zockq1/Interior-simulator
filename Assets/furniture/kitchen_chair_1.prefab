@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 400000}
   - component: {fileID: 3300000}
   - component: {fileID: 2300000}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 400002}
   - component: {fileID: 3300002}
   - component: {fileID: 2300002}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: seat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 4337342723735299769}
   - component: {fileID: 3055042910980068849}
   - component: {fileID: 611016344597043329}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: kitchen_chair_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,10 +225,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81bb1d300559e0a4fb33e4d24e283cd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubeColor: {fileID: 0}
-  iscollision: 0
-  isdeployment: 0
-  isrelocation: 0
 --- !u!65 &611016344597043329
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7745959742548589989}
   - component: {fileID: 3461548652575828698}
   - component: {fileID: 8681064211767633159}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: seat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 5425536035988439115}
   - component: {fileID: 1833907913735121071}
   - component: {fileID: 3502480899356305861}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: chair_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,10 +142,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81bb1d300559e0a4fb33e4d24e283cd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubeColor: {fileID: 0}
-  iscollision: 0
-  isdeployment: 0
-  isrelocation: 0
 --- !u!54 &3502480899356305861
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -173,7 +169,7 @@ GameObject:
   - component: {fileID: 6490134920182696337}
   - component: {fileID: 8256677126116264470}
   - component: {fileID: 1078246782120250357}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: plastic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,7 +250,7 @@ GameObject:
   - component: {fileID: 723917791996825131}
   - component: {fileID: 8672817332431640366}
   - component: {fileID: 7653577227613950116}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wheels
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -9,31 +9,34 @@ using UnityEngine;
 */
 public class Deployment : MonoBehaviour
 {
-    public Renderer cubeColor;
-    Color temp;    
-    public bool iscollision;
-    public bool isdeployment;
-    public bool isrelocation;
+    private bool iscollision;
+    private bool isdeployment;
+    private bool isrelocation;
+    control f_control;
+
+    //변수 초기화 및 배치중이던 오브젝트 제거
     void Start()
     {
-        //gameObject.GetComponent<standby>().enabled = false;
         isdeployment = false;
         iscollision = false;
         isrelocation = false;
         GetComponent<Collider>().isTrigger = false;
-        cubeColor = gameObject.GetComponent<Renderer>();
-        temp = cubeColor.material.color;
+        GameObject.Find("control").GetComponent<control>().isdeploying = true;
+        Destroy(GameObject.FindWithTag("Deploying"));
+        gameObject.tag = "Deploying";
     }
 
     // Update is called once per frame
     void Update()
     {
-        //좌클릭으로 가구 배치, 충돌이 있거나, 재배치상황에서는 동작하지 않음
-        if (Input.GetMouseButtonDown(0) && !iscollision && !isrelocation)
+        //좌클릭으로 가구 배치, 이미 배치 되었거나, 충돌이 있거나, 재배치 시작 상황에서는 동작하지 않음
+        if (Input.GetMouseButtonDown(0) && !isdeployment && !iscollision && !isrelocation)
         {
             isdeployment = true;
             GetComponent<Collider>().isTrigger = true;
-            Debug.Log("클릭");
+            Debug.Log("배치치치치ㅣㅊ치ㅣ");
+            GameObject.Find("control").GetComponent<control>().isdeploying = false;
+            gameObject.tag = "Deployed";
         }
         isrelocation =  false;
 
@@ -49,10 +52,15 @@ public class Deployment : MonoBehaviour
             }
         }
 
-        //아직 배치되지 않았을 시 우클릭으로 가구 회전
-        if(!isdeployment && Input.GetMouseButton(1)){
+        //아직 배치되지 않았을 시 우클릭으로 가구 회전(모델이 z축이 높이인 경우와, y축이 높이인 경우 확인)
+        if(!isdeployment && Input.GetMouseButton(1) && (gameObject.layer == 9)){
             
             transform.Rotate (0, 0.5f, 0);
+        }
+
+        if(!isdeployment && Input.GetMouseButton(1) && (gameObject.layer == 8)){
+            
+            transform.Rotate (0, 0, .5f);
         }
 
         //아직 배치되지 않았을 시 휠 버튼으로 가구 좌우반전
@@ -74,7 +82,6 @@ public class Deployment : MonoBehaviour
         if(!isdeployment){
             iscollision = true;
             Debug.Log("Enter: 배치불가");
-            cubeColor.material.color = Color.red;
         }
     }
 
@@ -82,7 +89,6 @@ public class Deployment : MonoBehaviour
         if(!isdeployment){
             iscollision = true;
             Debug.Log("stay: 배치불가");
-            cubeColor.material.color = Color.red;
         }
     }
 
@@ -90,17 +96,20 @@ public class Deployment : MonoBehaviour
         if(!isdeployment){
             iscollision = false;
             Debug.Log("Eixt: 배치가능");
-            cubeColor.material.color = temp;
         }
     }
 
     //배치된 상태의 가구 좌클릭시 재배치
     private void OnMouseDown(){
-        if(isdeployment){
-        isdeployment = false;
-        isrelocation =  true;
-        GetComponent<Collider>().isTrigger = false;
-        Debug.Log("클릭");
+        f_control = GameObject.Find("control").GetComponent<control>();
+
+        if(isdeployment && !f_control.isdeploying && f_control.mode == 2){
+            isdeployment = false;
+            isrelocation =  true;
+            GetComponent<Collider>().isTrigger = false;
+            GameObject.Find("control").GetComponent<control>().isdeploying = true;
+            Debug.Log("asdasdsa");
+            gameObject.tag = "Deploying";
         }
     }
 

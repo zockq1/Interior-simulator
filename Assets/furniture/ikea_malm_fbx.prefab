@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5897566101238175849}
   - component: {fileID: 1341465677553019819}
   - component: {fileID: 1251521801778670746}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ikea_malm_fbx
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66,10 +66,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81bb1d300559e0a4fb33e4d24e283cd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubeColor: {fileID: 0}
-  iscollision: 0
-  isdeployment: 0
-  isrelocation: 0
 --- !u!65 &1251521801778670746
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -94,7 +90,7 @@ GameObject:
   - component: {fileID: 4683969038803191371}
   - component: {fileID: 7895109252002603909}
   - component: {fileID: 5639900904268595408}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: malm_blanket_002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +171,7 @@ GameObject:
   - component: {fileID: 7950203657106192156}
   - component: {fileID: 350006854236250880}
   - component: {fileID: 2388727041369090726}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: malm_matress
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,7 +252,7 @@ GameObject:
   - component: {fileID: 7967872962296429285}
   - component: {fileID: 3723283879376717311}
   - component: {fileID: 9103131676471446217}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: malm_blanket001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -337,7 +333,7 @@ GameObject:
   - component: {fileID: 1404931103186119709}
   - component: {fileID: 7038570171039691032}
   - component: {fileID: 3641605965459754555}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: malm_frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -418,7 +414,7 @@ GameObject:
   - component: {fileID: 1009925677838158361}
   - component: {fileID: 2045601392099208632}
   - component: {fileID: 7916798287276133666}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: malm_pillows
   m_TagString: Untagged
   m_Icon: {fileID: 0}

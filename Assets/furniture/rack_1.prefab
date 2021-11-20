@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 178964457572169972}
   - component: {fileID: 678959142621705574}
   - component: {fileID: 8064147210083160735}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: rack_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,10 +109,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81bb1d300559e0a4fb33e4d24e283cd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubeColor: {fileID: 0}
-  iscollision: 0
-  isdeployment: 0
-  isrelocation: 0
 --- !u!54 &8064147210083160735
 Rigidbody:
   m_ObjectHideFlags: 0

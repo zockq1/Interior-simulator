@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4109357013868053491}
   - component: {fileID: 4109357013868856293}
   - component: {fileID: 4109357013869822245}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Storage02_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 4109357013868053441}
   - component: {fileID: 4109357013868856313}
   - component: {fileID: 4109357013869822265}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Storage02_Drawer2_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 4109357013868053443}
   - component: {fileID: 4109357013868856315}
   - component: {fileID: 4109357013869822267}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Storage02_Drawer2_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,7 +254,7 @@ GameObject:
   - component: {fileID: 4109357013868053445}
   - component: {fileID: 4109357013868856319}
   - component: {fileID: 4109357013869822271}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Storage02_Drawer3_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -333,7 +333,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4109357013868053447}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Storage02_Drawer3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -368,7 +368,7 @@ GameObject:
   - component: {fileID: 4109357013868053449}
   - component: {fileID: 4109357013868856291}
   - component: {fileID: 4109357013869822243}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Storage02_Drawer3_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -449,7 +449,7 @@ GameObject:
   - component: {fileID: 4109357013868053451}
   - component: {fileID: 4109357013868856317}
   - component: {fileID: 4109357013869822269}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Storage02_Drawer3_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -530,7 +530,7 @@ GameObject:
   - component: {fileID: 4109357013868053453}
   - component: {fileID: 4109357013868856295}
   - component: {fileID: 4109357013869822247}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Storage02_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -611,7 +611,7 @@ GameObject:
   - component: {fileID: 4109357013868053455}
   - component: {fileID: 4109357013868856289}
   - component: {fileID: 4109357013869822241}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Storage02_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -690,7 +690,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4109357013868053457}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Storage02_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -727,7 +727,7 @@ GameObject:
   - component: {fileID: 2513064439746648604}
   - component: {fileID: 3716200052656779429}
   - component: {fileID: 3601885002811910884}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Storage02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -829,10 +829,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81bb1d300559e0a4fb33e4d24e283cd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubeColor: {fileID: 0}
-  iscollision: 0
-  isdeployment: 0
-  isrelocation: 0
 --- !u!1 &4109357013867831285
 GameObject:
   m_ObjectHideFlags: 0
@@ -844,7 +840,7 @@ GameObject:
   - component: {fileID: 4109357013868053461}
   - component: {fileID: 4109357013868856307}
   - component: {fileID: 4109357013869822259}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Storage02_Drawer1_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -923,7 +919,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4109357013868053463}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Storage02_Drawer1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -958,7 +954,7 @@ GameObject:
   - component: {fileID: 4109357013868053465}
   - component: {fileID: 4109357013868856311}
   - component: {fileID: 4109357013869822263}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Storage02_Drawer1_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1039,7 +1035,7 @@ GameObject:
   - component: {fileID: 4109357013868053467}
   - component: {fileID: 4109357013868856305}
   - component: {fileID: 4109357013869822257}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Storage02_Drawer1_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1120,7 +1116,7 @@ GameObject:
   - component: {fileID: 4109357013868053469}
   - component: {fileID: 4109357013868856309}
   - component: {fileID: 4109357013869822261}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Storage02_Drawer2_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1199,7 +1195,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4109357013868053471}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Storage02_Drawer2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

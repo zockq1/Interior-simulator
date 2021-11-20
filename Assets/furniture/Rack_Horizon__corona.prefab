@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1916748440521008234}
   - component: {fileID: 8880011500541617224}
   - component: {fileID: 52023307076157606}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rack_Horizon_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 7843945995874817148}
   - component: {fileID: 2083275841093777355}
   - component: {fileID: -6439935987946053983}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rack_Horizon__corona
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,10 +141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81bb1d300559e0a4fb33e4d24e283cd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubeColor: {fileID: 0}
-  iscollision: 0
-  isdeployment: 0
-  isrelocation: 0
 --- !u!54 &-6439935987946053983
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -172,7 +168,7 @@ GameObject:
   - component: {fileID: 1469971465092545483}
   - component: {fileID: 6736475735911795420}
   - component: {fileID: 7309462577170188100}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rack_Horizon_002
   m_TagString: Untagged
   m_Icon: {fileID: 0}

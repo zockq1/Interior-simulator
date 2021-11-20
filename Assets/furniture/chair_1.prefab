@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6040604037537522191}
   - component: {fileID: 2171363656180504416}
   - component: {fileID: 6078191577721815561}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: chair_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,10 +48,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81bb1d300559e0a4fb33e4d24e283cd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubeColor: {fileID: 0}
-  iscollision: 0
-  isdeployment: 0
-  isrelocation: 0
 --- !u!65 &2171363656180504416
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -92,7 +88,7 @@ GameObject:
   - component: {fileID: 400002}
   - component: {fileID: 3300000}
   - component: {fileID: 2300000}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: metal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +169,7 @@ GameObject:
   - component: {fileID: 400004}
   - component: {fileID: 3300002}
   - component: {fileID: 2300002}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: plastic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,7 +250,7 @@ GameObject:
   - component: {fileID: 400006}
   - component: {fileID: 3300004}
   - component: {fileID: 2300004}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: seat
   m_TagString: Untagged
   m_Icon: {fileID: 0}

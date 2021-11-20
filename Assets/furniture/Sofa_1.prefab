@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 23694263265997746}
   - component: {fileID: 5908300582098279069}
   - component: {fileID: 5288642910405090489}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sofa_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,10 +47,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81bb1d300559e0a4fb33e4d24e283cd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubeColor: {fileID: 0}
-  iscollision: 0
-  isdeployment: 0
-  isrelocation: 0
 --- !u!33 &33187839763970492
 MeshFilter:
   m_ObjectHideFlags: 0

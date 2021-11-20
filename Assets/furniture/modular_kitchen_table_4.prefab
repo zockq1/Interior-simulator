@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8531005568565893180}
   - component: {fileID: 3946371382138096872}
   - component: {fileID: 2833712622873651961}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: modular_kitchen_table_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,10 +71,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81bb1d300559e0a4fb33e4d24e283cd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubeColor: {fileID: 0}
-  iscollision: 0
-  isdeployment: 0
-  isrelocation: 0
 --- !u!65 &2833712622873651961
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -99,7 +95,7 @@ GameObject:
   - component: {fileID: 400002}
   - component: {fileID: 3300000}
   - component: {fileID: 2300000}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +176,7 @@ GameObject:
   - component: {fileID: 400004}
   - component: {fileID: 3300002}
   - component: {fileID: 2300002}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: socle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,7 +257,7 @@ GameObject:
   - component: {fileID: 400006}
   - component: {fileID: 3300004}
   - component: {fileID: 2300004}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: filter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -342,7 +338,7 @@ GameObject:
   - component: {fileID: 400008}
   - component: {fileID: 3300006}
   - component: {fileID: 2300006}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: hot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -423,7 +419,7 @@ GameObject:
   - component: {fileID: 400010}
   - component: {fileID: 3300008}
   - component: {fileID: 2300008}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: tabletop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -504,7 +500,7 @@ GameObject:
   - component: {fileID: 400012}
   - component: {fileID: 3300010}
   - component: {fileID: 2300010}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: sink
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -585,7 +581,7 @@ GameObject:
   - component: {fileID: 400014}
   - component: {fileID: 3300012}
   - component: {fileID: 2300012}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: tap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -666,7 +662,7 @@ GameObject:
   - component: {fileID: 400016}
   - component: {fileID: 3300014}
   - component: {fileID: 2300014}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -747,7 +743,7 @@ GameObject:
   - component: {fileID: 400018}
   - component: {fileID: 3300016}
   - component: {fileID: 2300016}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -828,7 +824,7 @@ GameObject:
   - component: {fileID: 400020}
   - component: {fileID: 3300018}
   - component: {fileID: 2300018}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: cold
   m_TagString: Untagged
   m_Icon: {fileID: 0}

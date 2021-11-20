@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7045274209641218672}
   - component: {fileID: 7045274209640415826}
   - component: {fileID: 7045274209639448722}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Desk02_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 7045274209641218674}
   - component: {fileID: 7045274209640415828}
   - component: {fileID: 7045274209639448724}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Desk02_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 7045274209641218676}
   - component: {fileID: 7045274209640415830}
   - component: {fileID: 7045274209639448726}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Desk02_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,7 +256,7 @@ GameObject:
   - component: {fileID: -406884730001971022}
   - component: {fileID: -7072598318616806111}
   - component: {fileID: -3745260696807711743}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Desk02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,7 +348,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81bb1d300559e0a4fb33e4d24e283cd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubeColor: {fileID: 0}
-  iscollision: 0
-  isdeployment: 0
-  isrelocation: 0
