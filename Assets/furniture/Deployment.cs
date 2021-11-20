@@ -73,6 +73,7 @@ public class Deployment : MonoBehaviour
 
         //아직 배치되지 않았을 시 Delete 버튼으로 가구 삭제
         if(!isdeployment && Input.GetKeyDown(KeyCode.Delete)){
+            GameObject.Find("control").GetComponent<control>().isdeploying = false;
             Destroy(gameObject);
         }
     }
