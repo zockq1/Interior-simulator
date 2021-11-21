@@ -30,10 +30,11 @@ public class WallCreate : MonoBehaviour
         temp_wall = WallPrefab1;//(임시)
 
         //벽설치 모드 On / Off
-        if (Input.GetKey(KeyCode.Alpha2) == true) 
-        {
-            if (createPossibleWall == true) { createPossibleWall = false; Debug.Log("벽 설치 모드 OFF"); }
-            else { createPossibleWall = true; Debug.Log("벽 설치 모드 ON"); }
+        if(GameObject.Find("control").GetComponent<control>().mode == 1 && GameObject.Find("control").GetComponent<control>().mode_1 == 2){
+            createPossibleWall = true;
+        }
+        else{
+             createPossibleWall = false;
         }
 
         //마우스를 통해 그리드 클릭후, 키보드 상하좌우로 벽 설치.

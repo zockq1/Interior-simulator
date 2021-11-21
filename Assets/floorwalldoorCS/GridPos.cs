@@ -15,8 +15,12 @@ public class GridPos : MonoBehaviour
     void Update()
     {
         //도면모드 ON / OFF => 마우스 좌표가 항상 양수가 되는 위치로 카메라 둘것.
-        PlanMode = true;
-
+        if(GameObject.Find("control").GetComponent<control>().mode == 1){
+            PlanMode = true;
+        }
+        else{
+            PlanMode = false;
+        }
 
         //마우스를 통해 그리드 이동.
         if (Input.GetMouseButtonDown(0) && PlanMode == true)
@@ -33,6 +37,7 @@ public class GridPos : MonoBehaviour
             mouse_Pos.z = (int)mouse_Pos.z + 0.5f;
             transform.position = mouse_Pos;
         }
+        
         if (Input.GetMouseButton(0) && PlanMode == true)
         {
             //마우스 드래그 중

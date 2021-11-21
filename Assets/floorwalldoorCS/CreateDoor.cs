@@ -30,13 +30,15 @@ public class CreateDoor : MonoBehaviour
         temp_door1 = DoorPrefab1_1;
         temp_door2 = DoorPrefab1_2;
 
+        if(GameObject.Find("control").GetComponent<control>().mode == 1 && GameObject.Find("control").GetComponent<control>().mode_1 == 3){
+            createPossibleDoor = true;
+        }
+        else{
+            createPossibleDoor = false;
+        }
 
         //5튼키 문설치 모드 On / Off
-        if (Input.GetKey(KeyCode.Alpha3) == true)
-        {
-            if (createPossibleDoor == true) { createPossibleDoor = false; Debug.Log("문 설치 모드 OFF"); }
-            else { createPossibleDoor = true; Debug.Log("문 설치 모드 ON"); }
-        }
+
 
         //마우스로 격자 설정후, 키보드 상하좌우로 문 설치.
         if (Input.GetMouseButtonDown(0) && createPossibleDoor == true)

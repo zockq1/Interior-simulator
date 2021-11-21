@@ -38,11 +38,12 @@ public class FloorCreate : MonoBehaviour
         //UI 클릭으로 타일의 종류를 바꿔줌.
         temp_floor = FloorPrefab1;
 
-        //바닥 생성 모드 ON / OFF
-        if (Input.GetKey(KeyCode.Alpha1) == true)
-        {
-            if (createPossibleFloor == true) { createPossibleFloor = false; Debug.Log("바닥 설치 모드 OFF"); }
-            else { createPossibleFloor = true; Debug.Log("바닥 설치 모드 ON"); }
+
+        if(GameObject.Find("control").GetComponent<control>().mode == 1 && GameObject.Find("control").GetComponent<control>().mode_1 == 1){
+            createPossibleFloor = true;
+        }
+        else{
+             createPossibleFloor = false;
         }
 
         //마우스를 끌어서 타일 까는 작업.
