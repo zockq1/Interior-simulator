@@ -42,7 +42,7 @@ public class control : MonoBehaviour
 
     public void SwitchingTo1(){
         mode = 1;
-        //Destroy(GameObject.FindWithTag("Deploying"));
+        Destroy(GameObject.FindWithTag("Deploying"));
         camera1.enabled = true;
         camera1.tag = "MainCamera";
         camera2.enabled = false;
@@ -53,7 +53,7 @@ public class control : MonoBehaviour
 
     public void SwitchingTo2(){
         mode = 2;
-        //Destroy(GameObject.FindWithTag("Deploying"));
+        Destroy(GameObject.FindWithTag("Deploying"));
         camera1.enabled = false;
         camera1.tag = "StandbyCamera";
         camera2.enabled = true;
@@ -64,7 +64,7 @@ public class control : MonoBehaviour
 
     public void SwitchingTo3(){
         mode = 3;
-        //Destroy(GameObject.FindWithTag("Deploying"));
+        Destroy(GameObject.FindWithTag("Deploying"));
         camera1.enabled = false;
         camera1.tag = "StandbyCamera";
         camera2.enabled = false;
