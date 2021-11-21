@@ -4,19 +4,24 @@ using UnityEngine;
 /**
 *control
 *모드체크, 배치중인지 체크
-*mode 1 -> 도면 작성 모드
-*mode 2 -> 가구 배치 모드
-*mode 3 -> 1인칭 모드
+*mode == 1 -> 도면 작성 모드
+* L mode_1 == 1 -> 바닥 배치 모드
+* L mode_1 == 2 -> 벽 배치 모드
+* L mode_1 == 3 -> 문 배치 모드
+*mode == 2 -> 가구 배치 모드
+*mode == 3 -> 1인칭 모드
 *B711205탁재민
 */
 public class control : MonoBehaviour
 {
     public int mode;
+    public int mode_1;
     public Camera camera1, camera2, camera3;
     public bool isdeploying;
     void Start()
     {
         mode = 1;
+        mode_1 = 1;
         isdeploying = false;
         SwitchingTo1();
     }
@@ -49,6 +54,18 @@ public class control : MonoBehaviour
         camera2.tag = "StandbyCamera";
         camera3.enabled = false;
         camera3.tag = "StandbyCamera";
+    }
+
+    public void SwitchingToFloor(){
+        mode_1 = 1;
+    }
+
+    public void SwitchingToWall(){
+        mode_1 = 2;
+    }
+
+    public void SwitchingToDoor(){
+        mode_1 = 3;
     }
 
     public void SwitchingTo2(){
