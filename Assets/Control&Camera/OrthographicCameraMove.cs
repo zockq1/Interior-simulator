@@ -4,6 +4,7 @@ using UnityEngine;
 /**
 *OrthographicCameraMove
 *WASD 이용해 카메라 이동
+*마우스 휠로 줌인, 줌아웃
 *B711205탁재민
 */
 public class OrthographicCameraMove : MonoBehaviour
