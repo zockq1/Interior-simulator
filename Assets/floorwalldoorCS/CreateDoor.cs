@@ -4,20 +4,28 @@ using UnityEngine;
 
 public class CreateDoor : MonoBehaviour
 {
-    public GameObject DoorPrefab1_1;//πÆ¬¶1-1
-    public GameObject DoorPrefab1_2;//πÆ¬¶1-2
-    public GameObject DoorPrefab2_1;//πÆ¬¶2-1
-    public GameObject DoorPrefab2_2;//πÆ¬¶2-2
+    public GameObject DoorPrefab1_1;//Î¨∏Ïßù1-1
+    public GameObject DoorPrefab1_2;//Î¨∏Ïßù1-2
+    public GameObject DoorPrefab2_1;//Î¨∏Ïßù2-1
+    public GameObject DoorPrefab2_2;//Î¨∏Ïßù2-2
     private GameObject temp_door1;
     private GameObject temp_door2;
 
+    private GridPos gridpos; //GridPosÎ°ú Î∂ÄÌÑ∞ Í∞ÄÏ†∏Ïò® ÎßàÏö∞Ïä§ Ï¢åÌëú.
+
     // Start is called before the first frame update
-    List<GameObject> cloneList = new List<GameObject>();
-    Vector3 mouse_Pos;
-    Vector3 temp;
-    int[] WallPos = new int[5];
-    bool createPossibleDoor = false;
-    bool firstMouseClickCheck = false; //∏∂øÏΩ∫ ≈¨∏Ø ∏’¿˙ «ÿº≠ ¿ßƒ° ¡ˆ¡§«œ¥¬¡ˆ √º≈©.
+    List<GameObject> doorCloneList = new List<GameObject>();
+    int cloneNum = 0;
+    private Vector3 mouse_Pos;
+    private Vector3 tempPosLeft;
+    private Vector3 tempPosRight;
+    private Vector3 tempPosUp;
+    private Vector3 tempPosDown;
+    private bool createPossibleDoor = false;
+    private bool doubleCheckLeft = false; //Î¨∏ Ï§ëÎ≥µ ÏÉùÏÑ± Ï≤¥ÌÅ¨
+    private bool doubleCheckRight = false; //Î¨∏ Ï§ëÎ≥µ ÏÉùÏÑ± Ï≤¥ÌÅ¨
+    private bool doubleCheckUp = false; //Î¨∏ Ï§ëÎ≥µ ÏÉùÏÑ± Ï≤¥ÌÅ¨
+    private bool doubleCheckDown = false; //Î¨∏ Ï§ëÎ≥µ ÏÉùÏÑ± Ï≤¥ÌÅ¨
     void Start()
     {
         mouse_Pos = transform.position;
@@ -26,102 +34,121 @@ public class CreateDoor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //UI ≈¨∏ØΩ√ «ÿ¥Á πÆ¿∏∑Œ πŸ≤„¡‹.
+        //UI ÌÅ¥Î¶≠Ïãú Ìï¥Îãπ Î¨∏ÏúºÎ°ú Î∞îÍøîÏ§å.
         temp_door1 = DoorPrefab1_1;
         temp_door2 = DoorPrefab1_2;
 
-        if(GameObject.Find("control").GetComponent<control>().mode == 1 && GameObject.Find("control").GetComponent<control>().mode_1 == 3){
+        
+        
+        //Î≤ΩÏÑ§Ïπò Î™®Îìú On / Off
+        if (GameObject.Find("control").GetComponent<control>().mode == 1 && GameObject.Find("control").GetComponent<control>().mode_1 == 3)
+        {
             createPossibleDoor = true;
         }
-        else{
+        else
+        {
             createPossibleDoor = false;
         }
 
-        //5∆∞≈∞ πÆº≥ƒ° ∏µÂ On / Off
 
-
-        //∏∂øÏΩ∫∑Œ ∞›¿⁄ º≥¡§»ƒ, ≈∞∫∏µÂ ªÛ«œ¡¬øÏ∑Œ πÆ º≥ƒ°.
-        if (Input.GetMouseButtonDown(0) && createPossibleDoor == true)
+        //ÏÉÅÌïòÏ¢åÏö∞ ÌÇ§Î≥¥ÎìúÎ•º ÎàÑÎ•º ÏÉÅÌÉúÏóêÏÑú ÎßàÏö∞Ïä§Î•º ÎÅåÍ≥†Í∞ÄÎ©¥ Î≤Ω ÏÉùÏÑ±.
+        if (tempPosLeft != GameObject.Find("GridPos").GetComponent<GridPos>().mouse_Pos)
         {
-            for (int i = 0; i < 5; i++) //∞¢ ±◊∏ÆµÂø° ∫Æ ¡∏¿Á ø©∫Œ √ ±‚»≠.
-            {
-                WallPos[i] = 0;
-            }
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 10000f))
-            {
-                mouse_Pos = hit.point;
-                mouse_Pos.y = transform.position.y;
-                temp = mouse_Pos;
-            }
-            Debug.Log(mouse_Pos);
-            firstMouseClickCheck = true;
+            doubleCheckLeft = true;
         }
-        
-        if (Input.GetKey(KeyCode.LeftArrow) == true && firstMouseClickCheck == true && createPossibleDoor == true)
+        if (tempPosRight != GameObject.Find("GridPos").GetComponent<GridPos>().mouse_Pos)
         {
-            if (WallPos[0] == 0)
-            {
-                mouse_Pos.x = (int)mouse_Pos.x + 0.95f;
-                mouse_Pos.y = 0.0f;
-                mouse_Pos.z = (int)mouse_Pos.z + 0.049f;
+            doubleCheckRight = true;
+        }
+        if (tempPosUp != GameObject.Find("GridPos").GetComponent<GridPos>().mouse_Pos)
+        {
+            doubleCheckUp = true;
+        }
+        if (tempPosDown != GameObject.Find("GridPos").GetComponent<GridPos>().mouse_Pos)
+        {
+            doubleCheckDown = true;
+        }
+        if (Input.GetKey(KeyCode.LeftArrow) == true  && createPossibleDoor == true && doubleCheckLeft)
+        {
+                gridpos = GameObject.Find("GridPos").GetComponent<GridPos>();
+                tempPosLeft = gridpos.mouse_Pos;
+                gridpos.mouse_Pos.x -= 0.5f;
+                gridpos.mouse_Pos.z -= 0.5f;
+                mouse_Pos.x = gridpos.mouse_Pos.x + 0.95f;
+                mouse_Pos.y = 0.9f;
+                mouse_Pos.z = gridpos.mouse_Pos.z + 0.049f;
                 GameObject go = Instantiate(temp_door1) as GameObject;
                 go.transform.position = mouse_Pos;
-                WallPos[0] = 1;
-                mouse_Pos = temp;
-            }
+                doorCloneList.Add(go);
+                cloneNum += 1;
+                doubleCheckLeft = false;
 
         }
-        else if (Input.GetKey(KeyCode.RightArrow) == true && firstMouseClickCheck == true && createPossibleDoor == true)
+        else if (Input.GetKey(KeyCode.RightArrow) == true  && createPossibleDoor == true && doubleCheckRight)
         {
-            if (WallPos[1] == 0)
-            {
-                mouse_Pos.x = (int)mouse_Pos.x + 0.95f;
-                mouse_Pos.y = 0.0f;
-                mouse_Pos.z = (int)mouse_Pos.z + 0.95f;
+                gridpos = GameObject.Find("GridPos").GetComponent<GridPos>();
+                tempPosRight = gridpos.mouse_Pos;
+                gridpos.mouse_Pos.x -= 0.5f;
+                gridpos.mouse_Pos.z -= 0.5f;
+                mouse_Pos.x = gridpos.mouse_Pos.x + 0.95f;
+                mouse_Pos.y = 0.9f;
+                mouse_Pos.z = gridpos.mouse_Pos.z + 0.95f;
                 GameObject go = Instantiate(temp_door1) as GameObject;
                 go.transform.position = mouse_Pos;
-                WallPos[1] = 1;
-                mouse_Pos = temp;
-            }
-
+                doorCloneList.Add(go);
+                cloneNum += 1;
+                doubleCheckRight = false;
         }
-        else if (Input.GetKey(KeyCode.UpArrow) == true && firstMouseClickCheck == true && createPossibleDoor == true)
+        else if (Input.GetKey(KeyCode.UpArrow) == true  && createPossibleDoor == true && doubleCheckUp)
         {
-            if (WallPos[2] == 0)
-            {
-                mouse_Pos.x = (int)mouse_Pos.x +0.04f;
-                mouse_Pos.y = 0.0f;
-                mouse_Pos.z = (int)mouse_Pos.z + 0.95f;
+                gridpos = GameObject.Find("GridPos").GetComponent<GridPos>();
+                tempPosUp = gridpos.mouse_Pos;
+                gridpos.mouse_Pos.x -= 0.5f;
+                gridpos.mouse_Pos.z -= 0.5f;
+                mouse_Pos.x = gridpos.mouse_Pos.x + 0.04f;
+                mouse_Pos.y = 0.9f;
+                mouse_Pos.z = gridpos.mouse_Pos.z + 0.95f;
                 GameObject go = Instantiate(temp_door2) as GameObject;
                 go.transform.position = mouse_Pos;
-                WallPos[2] = 1;
-                mouse_Pos = temp;
-            }
+                doorCloneList.Add(go);
+                cloneNum += 1;
+                doubleCheckUp = false;
 
         }
 
-        else if (Input.GetKey(KeyCode.DownArrow) == true && firstMouseClickCheck == true && createPossibleDoor == true)
+        else if (Input.GetKey(KeyCode.DownArrow) == true  && createPossibleDoor == true && doubleCheckDown)
         {
-            if (WallPos[3] == 0)
-            {
-                mouse_Pos.x = (int)mouse_Pos.x +0.951f;
-                mouse_Pos.y = 0.0f;
-                mouse_Pos.z = (int)mouse_Pos.z + 0.95f;
+                gridpos = GameObject.Find("GridPos").GetComponent<GridPos>();
+                tempPosDown = gridpos.mouse_Pos;
+                gridpos.mouse_Pos.x -= 0.5f;
+                gridpos.mouse_Pos.z -= 0.5f;
+                mouse_Pos.x = gridpos.mouse_Pos.x + 0.951f;
+                mouse_Pos.y = 0.9f;
+                mouse_Pos.z = gridpos.mouse_Pos.z + 0.95f;
                 GameObject go = Instantiate(temp_door2) as GameObject;
                 go.transform.position = mouse_Pos;
-                WallPos[3] = 1;
-                mouse_Pos = temp;
+                doorCloneList.Add(go);
+                cloneNum += 1;
+                doubleCheckDown = false;
+        }
+
+        //delete Î°ú Î¨∏ ÏÇ≠Ï†ú
+        if (Input.GetKey(KeyCode.Delete) == true && createPossibleDoor == true )
+        {
+            Debug.Log("Î¨∏ ÏÇ≠Ï†ú ON");
+            if (cloneNum - 1 >= 0)
+            {
+                Destroy(doorCloneList[cloneNum - 1]);
+                doorCloneList.RemoveAt(cloneNum - 1);
+                cloneNum -= 1;
             }
 
         }
 
-
-        //πÆ ø¿∏•¬  ∏∂øÏΩ∫ ≈¨∏Ø¿∏∑Œ ªË¡¶
+        //Î¨∏ Ïò§Î•∏Ï™Ω ÎßàÏö∞Ïä§ ÌÅ¥Î¶≠ÏúºÎ°ú ÏÇ≠Ï†ú
         if (Input.GetMouseButton(1) && createPossibleDoor == true)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);    //ƒ´∏ﬁ∂Ûø°º≠ ∑π¿Ã∏¶ Ω¥Ÿ.
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);    //Ïπ¥Î©îÎùºÏóêÏÑú Î†àÏù¥Î•º ÏèúÎã§.
             RaycastHit hit;
           
             if (Physics.Raycast(ray, out hit, 30000))
