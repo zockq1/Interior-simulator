@@ -5,8 +5,8 @@ using UnityEngine;
 public class GridPos : MonoBehaviour
 {
     public float m_fSpeed = 300.0f;
-    Vector3 mouse_Pos;
-    bool PlanMode = false; //µµ¸é¸ğµå ON/OFF;
+    public Vector3 mouse_Pos;
+    bool PlanMode = false; //ë„ë©´ëª¨ë“œ ON/OFF;
     void Start()
     {
         mouse_Pos = transform.position;
@@ -14,7 +14,7 @@ public class GridPos : MonoBehaviour
 
     void Update()
     {
-        //µµ¸é¸ğµå ON / OFF => ¸¶¿ì½º ÁÂÇ¥°¡ Ç×»ó ¾ç¼ö°¡ µÇ´Â À§Ä¡·Î Ä«¸Ş¶ó µÑ°Í.
+        //ë„ë©´ëª¨ë“œ ON / OFF => ë§ˆìš°ìŠ¤ ì¢Œí‘œê°€ í•­ìƒ ì–‘ìˆ˜ê°€ ë˜ëŠ” ìœ„ì¹˜ë¡œ ì¹´ë©”ë¼ ë‘˜ê²ƒ.
         if(GameObject.Find("control").GetComponent<control>().mode == 1){
             PlanMode = true;
         }
@@ -22,8 +22,8 @@ public class GridPos : MonoBehaviour
             PlanMode = false;
         }
 
-        //¸¶¿ì½º¸¦ ÅëÇØ ±×¸®µå ÀÌµ¿.
-        if (Input.GetMouseButtonDown(0) && PlanMode == true)
+       //ì¿¼ë“œê°€ ë§ˆìš°ìŠ¤ ë”°ë¼ë‹¤ë‹ˆê¸°.
+        if(PlanMode == true)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -32,37 +32,24 @@ public class GridPos : MonoBehaviour
                 mouse_Pos = hit.point;
                 mouse_Pos.y = transform.position.y;
             }
-            mouse_Pos.x = (int)mouse_Pos.x + 0.5f;
+            if(mouse_Pos.x < 0)
+            {
+                mouse_Pos.x = (int)mouse_Pos.x + 0.5f-1.0f;
+            }
+            else
+            {
+                mouse_Pos.x = (int)mouse_Pos.x + 0.5f;
+            }
+            if(mouse_Pos.z < 0)
+            {
+                mouse_Pos.z = (int)mouse_Pos.z + 0.5f -1.0f;
+            }
+            else
+            {
+                mouse_Pos.z = (int)mouse_Pos.z + 0.5f;
+            }
             mouse_Pos.y = 0.1f;
-            mouse_Pos.z = (int)mouse_Pos.z + 0.5f;
-            transform.position = mouse_Pos;
-        }
-        
-        if (Input.GetMouseButton(0) && PlanMode == true)
-        {
-            //¸¶¿ì½º µå·¡±× Áß
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 10000f))
-            {
-                mouse_Pos = hit.point;
-                mouse_Pos.y = transform.position.y;
-            }
-            transform.position = mouse_Pos;
-        }
-
-        if (Input.GetMouseButtonUp(0) && PlanMode == true) //¸¶¿ì½º ¶À
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 10000f))
-            {
-                mouse_Pos = hit.point;
-                mouse_Pos.y = transform.position.y;
-            }
-            mouse_Pos.x = (int)mouse_Pos.x + 0.5f;
-            mouse_Pos.y = 0.01f;
-            mouse_Pos.z = (int)mouse_Pos.z + 0.5f;
+            
             transform.position = mouse_Pos;
         }
     }
