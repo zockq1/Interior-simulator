@@ -4,127 +4,129 @@ using UnityEngine;
 
 public class CreateWall : MonoBehaviour
 {
-    public GameObject WallPrefab1;//Èò»ö º®Áö º®
-    public GameObject WallPrefab2;//´Ù¸¥ º®Áö º®
-    public GameObject WallPrefab3;//´Ù¸¥ º®Áö º®
-    public GameObject WallPrefab4;//´Ù¸¥ º®Áö º®
+    public GameObject WallPrefab1;//í°ìƒ‰ ë²½ì§€ ë²½
+    public GameObject WallPrefab2;//ë‹¤ë¥¸ ë²½ì§€ ë²½
+    public GameObject WallPrefab3;//ë‹¤ë¥¸ ë²½ì§€ ë²½
+    public GameObject WallPrefab4;//ë‹¤ë¥¸ ë²½ì§€ ë²½
+    private GameObject temp_wall; //UI í´ë¦­ì„ í†µí•´ ìƒì„±ë˜ì–´ì•¼ í•˜ëŠ” ë²½.
+    
 
-    private GameObject temp_wall;
-    //private GameObject cloneTemp;
-    List<GameObject> cloneList = new List<GameObject>();
-
+    private GridPos gridpos; //GridPosë¡œ ë¶€í„° ê°€ì ¸ì˜¨ ë§ˆìš°ìŠ¤ ì¢Œí‘œ.
+    
     Vector3 mouse_Pos;
-    Vector3 temp;
-    int[] WallPos = new int[5];
-    bool createPossibleWall = false;
-    bool firstMouseClickCheck = false; //¸¶¿ì½º Å¬¸¯ ¸ÕÀú ÇØ¼­ À§Ä¡ ÁöÁ¤ÇÏ´ÂÁö Ã¼Å©.
+    private Vector3 tempPosLeft;
+    private Vector3 tempPosRight;
+    private Vector3 tempPosUp;
+    private Vector3 tempPosDown;
+    bool createPossibleWall = false; //ëª¨ë“œ ì„¤ì • ì²´í¬
+    private bool doubleCheckLeft = false; //ë²½ ì¤‘ë³µ ìƒì„± ì²´í¬
+    private bool doubleCheckRight = false; //ë²½ ì¤‘ë³µ ìƒì„± ì²´í¬
+    private bool doubleCheckUp = false; //ë²½ ì¤‘ë³µ ìƒì„± ì²´í¬
+    private bool doubleCheckDown = false; //ë²½ ì¤‘ë³µ ìƒì„± ì²´í¬
+
     void Start()
     {
-        
-        mouse_Pos = transform.position;
-       
+
     }
+
     void Update()
     {
-        //¾î¶² º®Áö¸¦ ¼±ÅÃÇÒ °ÍÀÎÁö.
-        temp_wall = WallPrefab1;//(ÀÓ½Ã)
 
-        //º®¼³Ä¡ ¸ğµå On / Off
-        if(GameObject.Find("control").GetComponent<control>().mode == 1 && GameObject.Find("control").GetComponent<control>().mode_1 == 2){
+        //ì–´ë–¤ ë²½ì§€ë¥¼ ì„ íƒí•  ê²ƒì¸ì§€.
+        temp_wall = WallPrefab1;//(ì„ì‹œ)
+
+        if (GameObject.Find("control").GetComponent<control>().mode == 1 && GameObject.Find("control").GetComponent<control>().mode_1 == 2)
+        {
             createPossibleWall = true;
         }
-        else{
-             createPossibleWall = false;
+        else
+        {
+            createPossibleWall = false;
         }
 
-        //¸¶¿ì½º¸¦ ÅëÇØ ±×¸®µå Å¬¸¯ÈÄ, Å°º¸µå »óÇÏÁÂ¿ì·Î º® ¼³Ä¡.
-        if (Input.GetMouseButtonDown(0) && createPossibleWall==true)
+        //ìƒí•˜ì¢Œìš° í‚¤ë³´ë“œë¥¼ ëˆ„ë¥¼ ìƒíƒœì—ì„œ ë§ˆìš°ìŠ¤ë¥¼ ëŒê³ ê°€ë©´ ë²½ ìƒì„±.
+        if (tempPosLeft != GameObject.Find("GridPos").GetComponent<GridPos>().mouse_Pos)
         {
-            for (int i = 0; i < 5; i++) //°¢ ±×¸®µå¿¡ º® Á¸Àç ¿©ºÎ ÃÊ±âÈ­.
-            {
-                WallPos[i] = 0;
-            }
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 10000f))
-            {
-                mouse_Pos = hit.point;
-                mouse_Pos.y = transform.position.y;
-                temp = mouse_Pos;
-            }
-            Debug.Log(mouse_Pos);
-            firstMouseClickCheck = true;
+            doubleCheckLeft = true;
         }
-        if (Input.GetKey(KeyCode.LeftArrow) == true && firstMouseClickCheck==true && createPossibleWall == true)
+        if (tempPosRight != GameObject.Find("GridPos").GetComponent<GridPos>().mouse_Pos)
         {
-            if (WallPos[0] == 0)
-            {
-                    mouse_Pos.x = (int)mouse_Pos.x + 0.5f;
-                    mouse_Pos.y = 0.0f;
-                    mouse_Pos.z = (int)mouse_Pos.z + 0.1f;
-                    GameObject go = Instantiate(temp_wall) as GameObject;
-                    go.transform.position = mouse_Pos;
-                    WallPos[0] = 1;
-                    mouse_Pos = temp;
-            }
+            doubleCheckRight = true;
         }
-        else if (Input.GetKey(KeyCode.RightArrow) == true && firstMouseClickCheck == true && createPossibleWall == true)
+        if (tempPosUp != GameObject.Find("GridPos").GetComponent<GridPos>().mouse_Pos)
         {
-            
-            if (WallPos[1] == 0)
-            {
-             
-                    mouse_Pos.x = (int)mouse_Pos.x + 0.5f;
-                    mouse_Pos.y = 0.0f;
-                    mouse_Pos.z = (int)mouse_Pos.z + 0.9f;
-                    GameObject go = Instantiate(temp_wall) as GameObject;
-                    go.transform.position = mouse_Pos;
-                    WallPos[1] = 1;
-                    mouse_Pos = temp;
-            }
-            
+            doubleCheckUp = true;
         }
-        else if (Input.GetKey(KeyCode.UpArrow) == true && firstMouseClickCheck == true && createPossibleWall == true)
+        if (tempPosDown != GameObject.Find("GridPos").GetComponent<GridPos>().mouse_Pos)
+        {
+            doubleCheckDown = true;
+        }
+        if (Input.GetKey(KeyCode.LeftArrow) == true  && createPossibleWall == true && doubleCheckLeft == true)
         {
             
-            if (WallPos[2] == 0)
-            {
-                    mouse_Pos.x = (int)mouse_Pos.x + 0.1f;
-                    mouse_Pos.y = 0.0f;
-                    mouse_Pos.z = (int)mouse_Pos.z + 0.5f;
-                    GameObject go = Instantiate(temp_wall) as GameObject;
-                    go.transform.position = mouse_Pos;
-                    go.transform.rotation = Quaternion.Euler(0, 90, 0);
-                    WallPos[2] = 1;
-                    mouse_Pos = temp;
-
-            }
-            
-            
+                gridpos = GameObject.Find("GridPos").GetComponent<GridPos>();
+                tempPosLeft = gridpos.mouse_Pos;
+                gridpos.mouse_Pos.x -= 0.5f;
+                gridpos.mouse_Pos.z -= 0.5f;
+                mouse_Pos.x = gridpos.mouse_Pos.x + 0.5f;
+                mouse_Pos.y = 1.4f;
+                mouse_Pos.z = gridpos.mouse_Pos.z + 0.1f;
+                GameObject go = Instantiate(temp_wall) as GameObject;
+                go.transform.position = mouse_Pos;
+                doubleCheckLeft = false;
 
         }
-        else if (Input.GetKey(KeyCode.DownArrow) == true && firstMouseClickCheck == true && createPossibleWall == true)
-        {
-            if (WallPos[3] == 0)
+        else if (Input.GetKey(KeyCode.RightArrow) == true  && createPossibleWall == true && doubleCheckRight == true)
             {
-                    mouse_Pos.x = (int)mouse_Pos.x + 0.9f;
-                    mouse_Pos.y = 0.0f;
-                    mouse_Pos.z = (int)mouse_Pos.z + 0.5f;
-                    GameObject go = Instantiate(temp_wall) as GameObject;
-                    go.transform.position = mouse_Pos;
-                    go.transform.rotation = Quaternion.Euler(0, 90, 0);
-                    WallPos[3] = 1;
-                    mouse_Pos = temp;
+                gridpos = GameObject.Find("GridPos").GetComponent<GridPos>();
+                tempPosRight = gridpos.mouse_Pos;
+                gridpos.mouse_Pos.x -= 0.5f;
+                gridpos.mouse_Pos.z -= 0.5f;
+                mouse_Pos.x = gridpos.mouse_Pos.x + 0.5f;
+                mouse_Pos.y = 1.4f;
+                mouse_Pos.z = gridpos.mouse_Pos.z + 0.9f;
+                GameObject go = Instantiate(temp_wall) as GameObject;
+                go.transform.position = mouse_Pos;
+                doubleCheckRight = false;
 
 
-            }
-            
+        }
+        else if (Input.GetKey(KeyCode.UpArrow) == true  && createPossibleWall == true && doubleCheckUp == true)
+        {
+                gridpos = GameObject.Find("GridPos").GetComponent<GridPos>();
+                tempPosUp = gridpos.mouse_Pos;
+                gridpos.mouse_Pos.x -= 0.5f;
+                gridpos.mouse_Pos.z -= 0.5f;
+                mouse_Pos.x = gridpos.mouse_Pos.x + 0.1f;
+                mouse_Pos.y = 1.4f;
+                mouse_Pos.z = gridpos.mouse_Pos.z + 0.5f;
+                GameObject go = Instantiate(temp_wall) as GameObject;
+                go.transform.position = mouse_Pos;
+                go.transform.rotation = Quaternion.Euler(0, 90, 0);
+                doubleCheckUp = false;
+
+
+        }
+        else if (Input.GetKey(KeyCode.DownArrow) == true  && createPossibleWall == true && doubleCheckDown == true)
+        {
+                gridpos = GameObject.Find("GridPos").GetComponent<GridPos>();
+                tempPosDown = gridpos.mouse_Pos;
+                gridpos.mouse_Pos.x -= 0.5f;
+                gridpos.mouse_Pos.z -= 0.5f;
+                mouse_Pos.x = gridpos.mouse_Pos.x + 0.9f;
+                mouse_Pos.y = 1.4f;
+                mouse_Pos.z = gridpos.mouse_Pos.z + 0.5f;
+                GameObject go = Instantiate(temp_wall) as GameObject;
+                go.transform.position = mouse_Pos;
+                go.transform.rotation = Quaternion.Euler(0, 90, 0);
+                doubleCheckDown = false;
+
         }
         
-        //º®°ú ¹® ¿À¸¥ÂÊ ¸¶¿ì½º Å¬¸¯À¸·Î »èÁ¦
+        //ë²½ê³¼ ë¬¸ ì˜¤ë¥¸ìª½ ë§ˆìš°ìŠ¤ í´ë¦­ìœ¼ë¡œ ì‚­ì œ
         if (Input.GetMouseButton(1) && createPossibleWall == true)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);    //Ä«¸Ş¶ó¿¡¼­ ·¹ÀÌ¸¦ ½ğ´Ù.
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);    //ì¹´ë©”ë¼ì—ì„œ ë ˆì´ë¥¼ ìœë‹¤.
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 30000))
             {
