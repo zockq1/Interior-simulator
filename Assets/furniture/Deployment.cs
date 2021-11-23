@@ -12,6 +12,7 @@ public class Deployment : MonoBehaviour
     private bool iscollision;
     private bool isdeployment;
     private bool isrelocation;
+    public GameObject red;
     control f_control;
 
     //변수 초기화 및 배치중이던 오브젝트 제거
@@ -24,6 +25,7 @@ public class Deployment : MonoBehaviour
         GameObject.Find("control").GetComponent<control>().isdeploying = true;
         Destroy(GameObject.FindWithTag("Deploying"));
         gameObject.tag = "Deploying";
+        red = gameObject.transform.GetChild(0).gameObject;
     }
 
     // Update is called once per frame
@@ -81,6 +83,8 @@ public class Deployment : MonoBehaviour
     //배치되지 않은 상태에서 가구 충돌 감지
     void OnTriggerEnter(Collider other){
         if(!isdeployment){
+            //red.gameObject.SetActiverecursively( true );
+            red.gameObject.SetActive(true);
             iscollision = true;
             Debug.Log("Enter: 배치불가");
         }
@@ -88,6 +92,7 @@ public class Deployment : MonoBehaviour
 
     void OnTriggerStay(Collider other){
         if(!isdeployment){
+            red.gameObject.SetActive(true);
             iscollision = true;
             Debug.Log("stay: 배치불가");
         }
@@ -95,6 +100,7 @@ public class Deployment : MonoBehaviour
 
     private void OnTriggerExit(Collider other){
         if(!isdeployment){
+            red.gameObject.SetActive(false);
             iscollision = false;
             Debug.Log("Eixt: 배치가능");
         }
