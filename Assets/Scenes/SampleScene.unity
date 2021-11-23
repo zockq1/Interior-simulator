@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44808203, g: 0.49808997, b: 0.5755342, a: 1}
+  m_IndirectSpecularColor: {r: 0.4366757, g: 0.48427194, b: 0.5645252, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -214,7 +214,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661331499}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &661331501
 Camera:
   m_ObjectHideFlags: 0
@@ -301,7 +301,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 0.8
+  m_Intensity: 0.5
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -340,7 +340,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -358,13 +358,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
-  m_LocalRotation: {x: 0.38904, y: -0.27180225, z: 0.0554214, w: 0.8784645}
-  m_LocalPosition: {x: 0.35543633, y: 3.1180916, z: -0.17832041}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 99999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 45.532, y: -38.326, z: -9.375}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,7 +475,7 @@ GameObject:
   - component: {fileID: 1187503790}
   - component: {fileID: 1187503794}
   m_Layer: 6
-  m_Name: Grid
+  m_Name: GridPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -571,6 +571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_fSpeed: 300
+  mouse_Pos: {x: 0, y: 0, z: 0}
 --- !u!1 &1411443970
 GameObject:
   m_ObjectHideFlags: 0
@@ -600,7 +601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5585d57e4bc8c3643a3c78ec429946d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  t1: {fileID: 85558784929597131, guid: 13a556d21e2e22e4792e8dfbd7faab58, type: 3}
+  t1: {fileID: 100000, guid: 51df288df6d8c864aae27c801a5fd8a5, type: 3}
   t2: {fileID: 7045274209641389654, guid: 84a02c43dec2b6943976f6e0e5d9bb38, type: 3}
   t3: {fileID: 1730799327064730, guid: b3cc1460da1cba94698e508b498e589c, type: 3}
   t4: {fileID: 100000, guid: 2efb098e46ba3e44cae4f1ba84005732, type: 3}
@@ -652,6 +653,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mode: 0
   mode_1: 0
+  mode_1_direction: 0
   camera1: {fileID: 963194227}
   camera2: {fileID: 1782015730}
   camera3: {fileID: 661331501}
@@ -744,7 +746,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1782015728}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1782015730
 Camera:
   m_ObjectHideFlags: 0

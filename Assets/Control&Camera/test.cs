@@ -28,12 +28,12 @@ public class test : MonoBehaviour
 
             if(Input.GetKeyDown(KeyCode.Keypad3))
             {
-                Instantiate(t1);
+                Instantiate(t3);
             }
 
             if(Input.GetKeyDown(KeyCode.Keypad4))
             {
-                Instantiate(t2);
+                Instantiate(t4);
             }
         }
     }

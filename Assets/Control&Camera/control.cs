@@ -8,7 +8,7 @@ using UnityEngine;
 * L mode_1 == 1 -> 바닥 배치 모드
 * L mode_1 == 2 -> 벽 배치 모드
 * L mode_1 == 3 -> 문 배치 모드
-*
+*   벽, 문 배치 방향
 * L mode_1_direction == 1 -> 상
 * L mode_1_direction == 2 -> 하
 * L mode_1_direction == 3 -> 좌
