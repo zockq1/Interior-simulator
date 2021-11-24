@@ -7,10 +7,6 @@ TagManager:
   - Deploying
   - Deployed
   - StandbyCamera
-  - wall
-  - Floor
-  - door
-  - Tarrian
   layers:
   - Default
   - TransparentFX

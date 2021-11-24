@@ -10,8 +10,7 @@ using UnityEngine;
 public class ThirdPersonCamera : MonoBehaviour
 {
     private Vector2 anchor, current, pos;
-     private float X;
-     private float Y;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,37 +32,16 @@ public class ThirdPersonCamera : MonoBehaviour
 
         if(Input.GetKey(KeyCode.W))
         {
-            transform.Translate(Vector3.forward * Time.deltaTime * 3);
-        }
-
-        if(Input.GetKey(KeyCode.S))
-        {
-            transform.Translate(Vector3.back * Time.deltaTime * 3);
-        }
-
-        if(Input.GetKey(KeyCode.Space))
-        {
             transform.Translate(Vector3.up * Time.deltaTime * 3);
         }
 
-        if(Input.GetKey(KeyCode.LeftShift))
+        if(Input.GetKey(KeyCode.S))
         {
             transform.Translate(Vector3.down * Time.deltaTime * 3);
         }
 
         float wheel = Input.GetAxis("Mouse ScrollWheel");
         this.GetComponent<Camera>().fieldOfView -= wheel * 20;
-        
-
-        
-            if(Input.GetMouseButton(1)) {
-                transform.Rotate(new Vector3(-Input.GetAxis("Mouse Y") * 3, Input.GetAxis("Mouse X") * 3, 0));
-                X = transform.rotation.eulerAngles.x;
-                Y = transform.rotation.eulerAngles.y;
-                transform.rotation = Quaternion.Euler(X, Y, 0);
-            }
-        
-         
 
     }
 }
