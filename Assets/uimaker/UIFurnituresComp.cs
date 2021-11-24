@@ -354,7 +354,28 @@ public class UIFurnituresComp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-            if ( ( ((Screen.height - (_slotboxsize.y * 4) + _slotboxposition.y) < Input.mousePosition.y && Input.mousePosition.y < (Screen.height + _slotboxposition.y)) &&
+        //클릭방식
+        if ((((Screen.height - (_slotboxsize.y * 4) + _slotboxposition.y) < Input.mousePosition.y && Input.mousePosition.y < (Screen.height + _slotboxposition.y)) &&
+        (_slotboxposition.x < Input.mousePosition.x && Input.mousePosition.x < _slotboxposition.x + _slotboxsize.x * _slotscolumnlen &&
+        _slotboxposition.y > (Input.mousePosition.y - Screen.height) && (Input.mousePosition.y - Screen.height) > _slotboxposition.y - _slotboxsize.y * (_slotsmaxrownum + 1)))
+        &&
+        !(_slotboxposition.x + _slotboxsize.x * _slotsfinalrowlen < Input.mousePosition.x && Input.mousePosition.x < _slotboxposition.x + _slotboxsize.x * (_slotsfinalrowlen + 1) &&
+        _slotboxposition.y - _slotboxsize.y * _slotsmaxrownum > (Input.mousePosition.y - Screen.height) && (Input.mousePosition.y - Screen.height) > _slotboxposition.y - _slotboxsize.y * (_slotsmaxrownum + 1)))
+        {
+            _uion = true;
+            if (Input.GetMouseButtonDown(0))
+            {
+                temprow = (int)((Screen.height - Input.mousePosition.y + _slotboxposition.y) / _slotboxsize.y);
+                tempcolumn = (int)((Input.mousePosition.x - _slotboxposition.x) / _slotboxsize.x);
+                furni = Instantiate(_funituremodels[_slotscolumnlen * temprow + tempcolumn]);
+            }
+        }
+        else
+        {
+            _uion = false;
+        }
+        /* 더블클릭방식
+               if ( ( ((Screen.height - (_slotboxsize.y * 4) + _slotboxposition.y) < Input.mousePosition.y && Input.mousePosition.y < (Screen.height + _slotboxposition.y)) &&
             (_slotboxposition.x < Input.mousePosition.x && Input.mousePosition.x < _slotboxposition.x + _slotboxsize.x * _slotscolumnlen &&
         _slotboxposition.y > (Input.mousePosition.y - Screen.height) && (Input.mousePosition.y - Screen.height) > _slotboxposition.y - _slotboxsize.y * (_slotsmaxrownum + 1)))
         &&
@@ -420,9 +441,10 @@ public class UIFurnituresComp : MonoBehaviour
                 }
             }
         }
+        }*/
 
         #region SCROLLING
-        if(((Screen.height - (_slotboxsize.y * 4) + _slotboxposition.y) < Input.mousePosition.y && Input.mousePosition.y < (Screen.height + _slotboxposition.y)) &&
+        if (((Screen.height - (_slotboxsize.y * 4) + _slotboxposition.y) < Input.mousePosition.y && Input.mousePosition.y < (Screen.height + _slotboxposition.y)) &&
              M_INVEN_HANDLE_TRAN.position.x < Input.mousePosition.x && Input.mousePosition.x < M_INVEN_HANDLE_TRAN.position.x + M_INVEN_HANDLE_TRAN.sizeDelta.x)
         {
             _uion2 = true;
