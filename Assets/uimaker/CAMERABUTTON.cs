@@ -38,6 +38,7 @@ public class CAMERABUTTON : MonoBehaviour
 
     void Awake()
     {
+        Screen.SetResolution(1920, 1080, false); //800x600
         _buttons = new GameObject[3];
         _buttonstrans = new RectTransform[3];
         _buttonsimages = new Image[3];
@@ -78,10 +79,10 @@ public class CAMERABUTTON : MonoBehaviour
         UIFURNI.transform.SetParent(this.transform);
         UIFURNITRAN.localPosition = new Vector2(0, 0);
 
-        _subbuttons = new GameObject[4];
-        _subbuttonstrans = new RectTransform[4];
-        _subbuttonsimages = new Image[4];
-        for (int i = 0; i < 4; i++)
+        _subbuttons = new GameObject[3];
+        _subbuttonstrans = new RectTransform[3];
+        _subbuttonsimages = new Image[3];
+        for (int i = 0; i < 3; i++)
         {
             _subbuttons[i] = new GameObject();
             if (_subbuttons[i].GetComponent<RectTransform>() == null)
@@ -101,38 +102,10 @@ public class CAMERABUTTON : MonoBehaviour
             _subbuttonsimages[i].sprite = _buttonssprite;
 
             _subbuttonstrans[i].sizeDelta = new Vector2(150, 100);
-            _subbuttonstrans[i].localPosition = new Vector2(120 + i * 160, 980);
+            _subbuttonstrans[i].localPosition = new Vector2(140 + i * 160, 980);
             _subbuttons[i].transform.SetParent(UIFURNI.transform);
         }
         UIFURNI.SetActive(false);
-
-        _subbuttons = new GameObject[4];
-        _subbuttonstrans = new RectTransform[4];
-        _subbuttonsimages = new Image[4];
-        for (int i = 0; i < 4; i++)
-        {
-            _subbuttons[i] = new GameObject();
-            if (_subbuttons[i].GetComponent<RectTransform>() == null)
-            {
-                _subbuttons[i].AddComponent<RectTransform>();
-                _subbuttonstrans[i] = _subbuttons[i].GetComponent<RectTransform>();
-            }
-            else
-                _subbuttonstrans[i] = _subbuttons[i].GetComponent<RectTransform>();
-            if (_subbuttons[i].GetComponent<Image>() == null)
-            {
-                _subbuttons[i].AddComponent<Image>();
-                _subbuttonsimages[i] = _subbuttons[i].GetComponent<Image>();
-            }
-            else
-                _subbuttonsimages[i] = _subbuttons[i].GetComponent<Image>();
-            _subbuttonsimages[i].sprite = _buttonssprite;
-
-            _subbuttonstrans[i].sizeDelta = new Vector2(150, 100);
-            _subbuttonstrans[i].localPosition = new Vector2(120 + i * 160, 980);
-            _subbuttons[i].transform.SetParent(UIFURNI.transform);
-        }
-
 
         UIDIR = new GameObject();
         if (UIDIR.GetComponent<RectTransform>() == null)
@@ -166,7 +139,7 @@ public class CAMERABUTTON : MonoBehaviour
         _dirbuttonsimages[0].sprite = _buttonssprite;
 
         _dirbuttonstrans[0].sizeDelta = new Vector2(100, 100);
-        _dirbuttonstrans[0].localPosition = new Vector2(200, 860);
+        _dirbuttonstrans[0].localPosition = new Vector2(220, 860);
         _dirbuttons[0].transform.SetParent(UIDIR.transform);
         for (int i = 1; i < 4; i++)
         {
@@ -188,12 +161,21 @@ public class CAMERABUTTON : MonoBehaviour
                 _dirbuttonsimages[i].sprite = _buttonssprite;
 
                 _dirbuttonstrans[i].sizeDelta = new Vector2(100, 100);
-                _dirbuttonstrans[i].localPosition = new Vector2(i * 100, 760);
+                _dirbuttonstrans[i].localPosition = new Vector2(20 + i * 100, 760);
                 _dirbuttons[i].transform.SetParent(UIDIR.transform);
         }
         UIDIR.SetActive(false);
     }
-    
+
+    private void Start()
+    {
+        _control.SwitchingTo1();
+        UIFURNI.SetActive(true);
+        FURNISLOTS.SetActive(false);
+        UIDIR.SetActive(false);
+        _opensub = true;
+        _opendir = false;
+    }
     void Update()
     {
         if (Input.GetMouseButtonDown(0) &&
@@ -201,37 +183,37 @@ public class CAMERABUTTON : MonoBehaviour
             _buttonstrans[0].position.y - 50 < Input.mousePosition.y && Input.mousePosition.y < _buttonstrans[0].position.y + 50)
         {
             Debug.Log("asdadf");
-            _opensub = false;
-            _opendir = false;
             _control.SwitchingTo1();
-            UIFURNI.SetActive(false);
+            UIFURNI.SetActive(true);
             FURNISLOTS.SetActive(false);
             UIDIR.SetActive(false);
+            _opensub = true;
+            _opendir = false;
         }
         if (Input.GetMouseButtonDown(0) &&
         _buttonstrans[1].position.x - 75 < Input.mousePosition.x && Input.mousePosition.x < _buttonstrans[1].position.x + 75 &&
          _buttonstrans[0].position.y - 50 < Input.mousePosition.y && Input.mousePosition.y < _buttonstrans[0].position.y + 50)
         {
             Debug.Log("sasgasf");
-            _opensub = true;
-            _opendir = false;
             _control.SwitchingTo2();
-            UIFURNI.SetActive(true);
-            FURNISLOTS.SetActive(false);
+            UIFURNI.SetActive(false);
+            FURNISLOTS.SetActive(true);
             UIDIR.SetActive(false);
             _control.SwitchingToFloor();
+            _opensub = true;
+            _opendir = false;
         }
         if (Input.GetMouseButtonDown(0) &&
         _buttonstrans[2].position.x - 75 < Input.mousePosition.x && Input.mousePosition.x < _buttonstrans[2].position.x + 75 &&
         _buttonstrans[0].position.y - 50 < Input.mousePosition.y && Input.mousePosition.y < _buttonstrans[0].position.y + 50)
         {
             Debug.Log("aasgvasf");
-            _opensub = false;
-            _opendir = false;
             _control.SwitchingTo3();
             UIFURNI.SetActive(false);
             FURNISLOTS.SetActive(false);
             UIDIR.SetActive(false);
+            _opensub = false;
+            _opendir = false;
         }
         if (_opensub == true)
         {
@@ -239,7 +221,7 @@ public class CAMERABUTTON : MonoBehaviour
                 _subbuttonstrans[0].position.x - 75 < Input.mousePosition.x && Input.mousePosition.x < _subbuttonstrans[0].position.x + 75 &&
                 _subbuttonstrans[0].position.y - 50 < Input.mousePosition.y && Input.mousePosition.y < _subbuttonstrans[0].position.y + 50)
             {
-                Debug.Log("sasgasf");
+                Debug.Log("Floor");
                 FURNISLOTS.SetActive(false);
                 _control.SwitchingToFloor();
                 UIDIR.SetActive(false);
@@ -249,7 +231,7 @@ public class CAMERABUTTON : MonoBehaviour
                 _subbuttonstrans[1].position.x - 75 < Input.mousePosition.x && Input.mousePosition.x < _subbuttonstrans[1].position.x + 75 &&
                 _subbuttonstrans[0].position.y - 50 < Input.mousePosition.y && Input.mousePosition.y < _subbuttonstrans[0].position.y + 50)
             {
-                Debug.Log("sasgasf");
+                Debug.Log("Wall");
                 FURNISLOTS.SetActive(false);
                 _control.SwitchingToWall();
                 UIDIR.SetActive(true);
@@ -259,20 +241,11 @@ public class CAMERABUTTON : MonoBehaviour
                 _subbuttonstrans[2].position.x - 75 < Input.mousePosition.x && Input.mousePosition.x < _subbuttonstrans[2].position.x + 75 &&
                 _subbuttonstrans[0].position.y - 50 < Input.mousePosition.y && Input.mousePosition.y < _subbuttonstrans[0].position.y + 50)
             {
-                Debug.Log("sasgasf");
+                Debug.Log("Door");
                 FURNISLOTS.SetActive(false);
                 _control.SwitchingToDoor();
                 UIDIR.SetActive(true);
                 _opendir = true;
-            }
-            if (Input.GetMouseButtonDown(0) &&
-                _subbuttonstrans[3].position.x - 75 < Input.mousePosition.x && Input.mousePosition.x < _subbuttonstrans[3].position.x + 75 &&
-                _subbuttonstrans[0].position.y - 50 < Input.mousePosition.y && Input.mousePosition.y < _subbuttonstrans[0].position.y + 50)
-            {
-                Debug.Log("sasgasf");
-                FURNISLOTS.SetActive(true);
-                UIDIR.SetActive(false);
-                _opendir = false;
             }
             
             if (_opendir == true)

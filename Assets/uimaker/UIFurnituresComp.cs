@@ -369,14 +369,14 @@ public class UIFurnituresComp : MonoBehaviour
                 {
                     _doubleclickmodetest = true;
                 }
-                else if (temptime < 0.5f)
+                else if (temptime < 0.8f)
                 {
                     Debug.Log("더블클릭 성공");
                     temprow = (int)((Screen.height - Input.mousePosition.y + _slotboxposition.y) / _slotboxsize.y);
                     tempcolumn = (int)((Input.mousePosition.x - _slotboxposition.x) / _slotboxsize.x);
                     _doubleclickmode = true;
                 }
-                else if (temptime >= 0.5f)
+                else if (temptime >= 0.8f)
                 {
                     Debug.Log("느려");
                     temptime = 0;
@@ -387,8 +387,6 @@ public class UIFurnituresComp : MonoBehaviour
         else
         {
             _uion = false;
-
-            Debug.Log((Screen.height - (_slotboxsize.y * 4) + _slotboxposition.y) +" 사이에 "+ Input.mousePosition.y + " 사이에 " + (Screen.height + _slotboxposition.y));
         }
 
         if (_doubleclickmode == true)
@@ -428,12 +426,10 @@ public class UIFurnituresComp : MonoBehaviour
              M_INVEN_HANDLE_TRAN.position.x < Input.mousePosition.x && Input.mousePosition.x < M_INVEN_HANDLE_TRAN.position.x + M_INVEN_HANDLE_TRAN.sizeDelta.x)
         {
             _uion2 = true;
-            Debug.Log(_uion2);
         }
         else
         {
             _uion2 = false;
-            Debug.Log(_uion2);
         }
 
         if (
@@ -448,7 +444,6 @@ public class UIFurnituresComp : MonoBehaviour
                 M_HANDLE_DRAG_ON = true;
             }
         }
-
         if (Input.GetMouseButton(0) && M_HANDLE_DRAG_ON == true)
         {
             M_HANDLE_STEP1 = true;
@@ -487,7 +482,7 @@ public class UIFurnituresComp : MonoBehaviour
     void doubleclick()
     {
         _clickedfurniture.SetActive(true);
-        _clickedfurniturerect.localPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y - Screen.height);
+        _clickedfurniturerect.localPosition = new Vector2(Input.mousePosition.x - 20, Input.mousePosition.y - Screen.height + 100);
         _clickedfurnitureimage.sprite = _furniturethumbssprites[_slotscolumnlen * temprow + tempcolumn];
 
         _mouseclick = true;
