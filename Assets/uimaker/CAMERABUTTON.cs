@@ -254,24 +254,28 @@ public class CAMERABUTTON : MonoBehaviour
                     _dirbuttonstrans[0].position.x - 50 < Input.mousePosition.x && Input.mousePosition.x < _dirbuttonstrans[0].position.x + 50 &&
                     _dirbuttonstrans[0].position.y - 50 < Input.mousePosition.y && Input.mousePosition.y < _dirbuttonstrans[0].position.y + 50)
                 {
+                    Debug.Log("UP");
                     _control.SwitchingToUp();
                 }
                 if (Input.GetMouseButtonDown(0) &&
                     _dirbuttonstrans[1].position.x - 50 < Input.mousePosition.x && Input.mousePosition.x < _dirbuttonstrans[1].position.x + 50 &&
                     _dirbuttonstrans[1].position.y - 50 < Input.mousePosition.y && Input.mousePosition.y < _dirbuttonstrans[1].position.y + 50)
                 {
+                    Debug.Log("Left");
                     _control.SwitchingToLeft();
                 }
                 if (Input.GetMouseButtonDown(0) &&
                     _dirbuttonstrans[2].position.x - 50 < Input.mousePosition.x && Input.mousePosition.x < _dirbuttonstrans[2].position.x + 50 &&
                     _dirbuttonstrans[1].position.y - 50 < Input.mousePosition.y && Input.mousePosition.y < _dirbuttonstrans[1].position.y + 50)
                 {
+                    Debug.Log("Down");
                     _control.SwitchingToDown();
                 }
                 if (Input.GetMouseButtonDown(0) &&
                     _dirbuttonstrans[3].position.x - 50 < Input.mousePosition.x && Input.mousePosition.x < _dirbuttonstrans[3].position.x + 50 &&
                     _dirbuttonstrans[1].position.y - 50 < Input.mousePosition.y && Input.mousePosition.y < _dirbuttonstrans[1].position.y + 50)
                 {
+                    Debug.Log("Right");
                     _control.SwitchingToRight();
                 }
             }
