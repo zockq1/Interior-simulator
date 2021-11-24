@@ -71,7 +71,7 @@ public class UIFurnituresComp : MonoBehaviour
 
     void Awake()
     {
-        _slotsarraylen = 27;
+        _slotsarraylen = 28;
         _slotscolumnlen = 2;
         _slotsmaxrownum = _slotsarraylen / _slotscolumnlen;
         if( ((float)_slotsarraylen / (float)_slotscolumnlen) > 0)
