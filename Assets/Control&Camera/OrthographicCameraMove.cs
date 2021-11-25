@@ -19,29 +19,30 @@ public class OrthographicCameraMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.A))
-        {
-            transform.Translate(Vector3.left * Time.deltaTime * 3);
-        }
+        if(GameObject.Find("control").GetComponent<control>().mode == 1){
+            if(Input.GetKey(KeyCode.A))
+            {
+                transform.Translate(Vector3.left * Time.deltaTime * 3);
+            }
 
-        if(Input.GetKey(KeyCode.D))
-        {
-            transform.Translate(Vector3.right * Time.deltaTime * 3);
-        }
+            if(Input.GetKey(KeyCode.D))
+            {
+                transform.Translate(Vector3.right * Time.deltaTime * 3);
+            }
 
-        if(Input.GetKey(KeyCode.W))
-        {
-            transform.Translate(Vector3.up * Time.deltaTime * 3);
-        }
+            if(Input.GetKey(KeyCode.W))
+            {
+                transform.Translate(Vector3.up * Time.deltaTime * 3);
+            }
 
-        if(Input.GetKey(KeyCode.S))
-        {
-            transform.Translate(Vector3.down * Time.deltaTime * 3);
-        }
+            if(Input.GetKey(KeyCode.S))
+            {
+                transform.Translate(Vector3.down * Time.deltaTime * 3);
+            }
 
-        float wheel = Input.GetAxis("Mouse ScrollWheel");
-        this.GetComponent<Camera>().orthographicSize -= wheel * 2;
-        
+            float wheel = Input.GetAxis("Mouse ScrollWheel");
+            this.GetComponent<Camera>().orthographicSize -= wheel * 2;
+        }
 
     }
 }

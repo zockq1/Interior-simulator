@@ -21,48 +21,49 @@ public class ThirdPersonCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.A))
-        {
-            transform.Translate(Vector3.left * Time.deltaTime * 3);
-        }
+        if(GameObject.Find("control").GetComponent<control>().mode == 2){
+            if(Input.GetKey(KeyCode.A))
+            {
+                transform.Translate(Vector3.left * Time.deltaTime * 3);
+            }
 
-        if(Input.GetKey(KeyCode.D))
-        {
-            transform.Translate(Vector3.right * Time.deltaTime * 3);
-        }
+            if(Input.GetKey(KeyCode.D))
+            {
+                transform.Translate(Vector3.right * Time.deltaTime * 3);
+            }
 
-        if(Input.GetKey(KeyCode.W))
-        {
-            transform.Translate(Vector3.forward * Time.deltaTime * 3);
-        }
+            if(Input.GetKey(KeyCode.W))
+            {
+                transform.Translate(Vector3.forward * Time.deltaTime * 3);
+            }
 
-        if(Input.GetKey(KeyCode.S))
-        {
-            transform.Translate(Vector3.back * Time.deltaTime * 3);
-        }
+            if(Input.GetKey(KeyCode.S))
+            {
+                transform.Translate(Vector3.back * Time.deltaTime * 3);
+            }
 
-        if(Input.GetKey(KeyCode.Space))
-        {
-            transform.Translate(Vector3.up * Time.deltaTime * 3);
-        }
+            if(Input.GetKey(KeyCode.Space))
+            {
+                transform.Translate(Vector3.up * Time.deltaTime * 3);
+            }
 
-        if(Input.GetKey(KeyCode.LeftShift))
-        {
-            transform.Translate(Vector3.down * Time.deltaTime * 3);
-        }
+            if(Input.GetKey(KeyCode.LeftShift))
+            {
+                transform.Translate(Vector3.down * Time.deltaTime * 3);
+            }
 
-        float wheel = Input.GetAxis("Mouse ScrollWheel");
-        this.GetComponent<Camera>().fieldOfView -= wheel * 20;
-        
+            //float wheel = Input.GetAxis("Mouse ScrollWheel");
+            //this.GetComponent<Camera>().fieldOfView -= wheel * 20;
+            
 
-        
+            
             if(Input.GetMouseButton(1)) {
                 transform.Rotate(new Vector3(-Input.GetAxis("Mouse Y") * 3, Input.GetAxis("Mouse X") * 3, 0));
                 X = transform.rotation.eulerAngles.x;
                 Y = transform.rotation.eulerAngles.y;
                 transform.rotation = Quaternion.Euler(X, Y, 0);
             }
-        
+        }
          
 
     }

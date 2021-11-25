@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 /**
 *Deployment
@@ -32,7 +33,7 @@ public class Deployment : MonoBehaviour
     void Update()
     {
         //좌클릭으로 가구 배치, 이미 배치 되었거나, 충돌이 있거나, 재배치 시작 상황에서는 동작하지 않음
-        if (Input.GetMouseButtonDown(0) && !isdeployment && !iscollision && !isrelocation)
+        if (Input.GetMouseButtonDown(0) && !isdeployment && !iscollision && !isrelocation && !EventSystem.current.IsPointerOverGameObject())
         {
             isdeployment = true;
             GetComponent<Collider>().isTrigger = true;
