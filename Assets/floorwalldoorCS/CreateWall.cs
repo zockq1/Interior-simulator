@@ -61,7 +61,7 @@ public class CreateWall : MonoBehaviour
         {
             doubleCheckDown = true;
         }
-        if (Input.GetKey(KeyCode.LeftArrow) == true  && createPossibleWall == true && doubleCheckLeft == true)
+        if (Input.GetMouseButton(0) == true  && createPossibleWall == true && doubleCheckLeft == true && GameObject.Find("control").GetComponent<control>().mode_1_direction==3)
         {
             
                 gridpos = GameObject.Find("GridPos").GetComponent<GridPos>();
@@ -69,21 +69,21 @@ public class CreateWall : MonoBehaviour
                 gridpos.mouse_Pos.x -= 0.5f;
                 gridpos.mouse_Pos.z -= 0.5f;
                 mouse_Pos.x = gridpos.mouse_Pos.x + 0.5f;
-                mouse_Pos.y = 1.4f;
+                mouse_Pos.y = 1.3f;
                 mouse_Pos.z = gridpos.mouse_Pos.z + 0.1f;
                 GameObject go = Instantiate(temp_wall) as GameObject;
                 go.transform.position = mouse_Pos;
                 doubleCheckLeft = false;
 
         }
-        else if (Input.GetKey(KeyCode.RightArrow) == true  && createPossibleWall == true && doubleCheckRight == true)
+        else if (Input.GetMouseButton(0) == true  && createPossibleWall == true && doubleCheckRight == true && GameObject.Find("control").GetComponent<control>().mode_1_direction == 4)
             {
                 gridpos = GameObject.Find("GridPos").GetComponent<GridPos>();
                 tempPosRight = gridpos.mouse_Pos;
                 gridpos.mouse_Pos.x -= 0.5f;
                 gridpos.mouse_Pos.z -= 0.5f;
                 mouse_Pos.x = gridpos.mouse_Pos.x + 0.5f;
-                mouse_Pos.y = 1.4f;
+                mouse_Pos.y = 1.3f;
                 mouse_Pos.z = gridpos.mouse_Pos.z + 0.9f;
                 GameObject go = Instantiate(temp_wall) as GameObject;
                 go.transform.position = mouse_Pos;
@@ -91,14 +91,14 @@ public class CreateWall : MonoBehaviour
 
 
         }
-        else if (Input.GetKey(KeyCode.UpArrow) == true  && createPossibleWall == true && doubleCheckUp == true)
+        else if (Input.GetMouseButton(0) == true  && createPossibleWall == true && doubleCheckUp == true && GameObject.Find("control").GetComponent<control>().mode_1_direction == 1)
         {
                 gridpos = GameObject.Find("GridPos").GetComponent<GridPos>();
                 tempPosUp = gridpos.mouse_Pos;
                 gridpos.mouse_Pos.x -= 0.5f;
                 gridpos.mouse_Pos.z -= 0.5f;
                 mouse_Pos.x = gridpos.mouse_Pos.x + 0.1f;
-                mouse_Pos.y = 1.4f;
+                mouse_Pos.y = 1.3f;
                 mouse_Pos.z = gridpos.mouse_Pos.z + 0.5f;
                 GameObject go = Instantiate(temp_wall) as GameObject;
                 go.transform.position = mouse_Pos;
@@ -107,14 +107,14 @@ public class CreateWall : MonoBehaviour
 
 
         }
-        else if (Input.GetKey(KeyCode.DownArrow) == true  && createPossibleWall == true && doubleCheckDown == true)
+        else if (Input.GetMouseButton(0) == true  && createPossibleWall == true && doubleCheckDown == true && GameObject.Find("control").GetComponent<control>().mode_1_direction == 2)
         {
                 gridpos = GameObject.Find("GridPos").GetComponent<GridPos>();
                 tempPosDown = gridpos.mouse_Pos;
                 gridpos.mouse_Pos.x -= 0.5f;
                 gridpos.mouse_Pos.z -= 0.5f;
                 mouse_Pos.x = gridpos.mouse_Pos.x + 0.9f;
-                mouse_Pos.y = 1.4f;
+                mouse_Pos.y = 1.3f;
                 mouse_Pos.z = gridpos.mouse_Pos.z + 0.5f;
                 GameObject go = Instantiate(temp_wall) as GameObject;
                 go.transform.position = mouse_Pos;
