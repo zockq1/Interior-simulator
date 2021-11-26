@@ -26,15 +26,30 @@ public class CreateWall : MonoBehaviour
 
     void Start()
     {
+        temp_wall = WallPrefab1;
+    }
 
+    //temp_wall 에 프리팹 설정
+    public void setWallPrefab1()
+    {
+        temp_wall = WallPrefab1;
+    }
+    public void setWallPrefab2()
+    {
+        temp_wall = WallPrefab2;
+    }
+    public void setWallPrefab3()
+    {
+        temp_wall = WallPrefab3;
+    }
+    public void setWallPrefab4()
+    {
+        temp_wall = WallPrefab4;
     }
 
     void Update()
     {
-
-        //어떤 벽지를 선택할 것인지.
-        temp_wall = WallPrefab1;//(임시)
-
+        //벽 생성 모드 ON/OFF
         if (GameObject.Find("control").GetComponent<control>().mode == 1 && GameObject.Find("control").GetComponent<control>().mode_1 == 2)
         {
             createPossibleWall = true;
@@ -44,7 +59,7 @@ public class CreateWall : MonoBehaviour
             createPossibleWall = false;
         }
 
-        //상하좌우 키보드를 누를 상태에서 마우스를 끌고가면 벽 생성.
+        //상하좌우로 벽 설치 방향을 선택하고, 마우스 왼쪽 버튼 누른 상태에서 드래그하면 벽 생성.
         if (tempPosLeft != GameObject.Find("GridPos").GetComponent<GridPos>().mouse_Pos)
         {
             doubleCheckLeft = true;
@@ -143,4 +158,7 @@ public class CreateWall : MonoBehaviour
 
 
     }
+
+   
+
 }
