@@ -22,7 +22,7 @@ public class GridPos : MonoBehaviour
             PlanMode = false;
         }
 
-       //쿼드가 마우스 따라다니기.
+       //도면모드일때, 쿼드가 마우스 따라다니기.
         if(PlanMode == true)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -50,6 +50,11 @@ public class GridPos : MonoBehaviour
             }
             mouse_Pos.y = 0.1f;
             
+            transform.position = mouse_Pos;
+        }
+        else
+        {
+            mouse_Pos.y = -1000.0f;
             transform.position = mouse_Pos;
         }
     }
