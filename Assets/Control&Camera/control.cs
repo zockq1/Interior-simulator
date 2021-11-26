@@ -52,20 +52,6 @@ public class control : MonoBehaviour
             SwitchingTo3();
         }
 
-        if(Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            SwitchingToFloor();
-        }
-
-        if(Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            SwitchingToWall();
-        }
-
-        if(Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            SwitchingToDoor();
-        }
     }
 
     public void SwitchingTo1(){
