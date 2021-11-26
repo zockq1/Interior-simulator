@@ -19,9 +19,9 @@ public class CAMERABUTTON : MonoBehaviour
 
     [SerializeField]
     GameObject UITHIRD;
-    GameObject UIFURNI;
-    RectTransform UIFURNITRAN;
-    Image UIFURNIIMAGE;
+    GameObject UIINPLAN;
+    RectTransform UIINPLANTRAN;
+    Image UIINPLANIMAGE;
     GameObject[] _subbuttons; //바닥 벽 문
     RectTransform[] _subbuttonstrans;
     Image[] _subbuttonsimages;
@@ -38,7 +38,24 @@ public class CAMERABUTTON : MonoBehaviour
     [SerializeField]
     Sprite _buttonssprite;
 
+    GameObject UIFLOOR; //바닥
+    GameObject[] _floorbuttons;
+    RectTransform[] _floorbuttonstrans;
+    Image[] _floorbuttonsimages;
 
+    GameObject UIDOOR; //문
+    GameObject[] _doorbuttons;
+    RectTransform[] _doorbuttonstrans;
+    Image[] _doorbuttonsimages;
+
+    GameObject UIWALL; //벽
+    GameObject[] _wallbuttons;
+    RectTransform[] _wallbuttonstrans;
+    Image[] _wallbuttonsimages;
+
+    bool _openfloor;
+    bool _openwall;
+    bool _opendoor;
 
     void Awake()
     {
@@ -71,16 +88,16 @@ public class CAMERABUTTON : MonoBehaviour
         _control = CONTROL.GetComponent<control>();
         _UIFurnituresComp = CONTROL.GetComponent<UIFurnituresComp>();
 
-        UIFURNI = new GameObject();
-        if (UIFURNI.GetComponent<RectTransform>() == null)
+        UIINPLAN = new GameObject();
+        if (UIINPLAN.GetComponent<RectTransform>() == null)
         {
-            UIFURNI.AddComponent<RectTransform>();
-            UIFURNITRAN = UIFURNI.GetComponent<RectTransform>();
+            UIINPLAN.AddComponent<RectTransform>();
+            UIINPLANTRAN = UIINPLAN.GetComponent<RectTransform>();
         }
         else
-            UIFURNITRAN = UIFURNI.GetComponent<RectTransform>();
-        UIFURNI.transform.SetParent(this.transform);
-        UIFURNITRAN.localPosition = new Vector2(0, 0);
+            UIINPLANTRAN = UIINPLAN.GetComponent<RectTransform>();
+        UIINPLAN.transform.SetParent(this.transform);
+        UIINPLANTRAN.localPosition = new Vector2(0, 0);
 
         _subbuttons = new GameObject[3];
         _subbuttonstrans = new RectTransform[3];
@@ -106,9 +123,9 @@ public class CAMERABUTTON : MonoBehaviour
 
             _subbuttonstrans[i].sizeDelta = new Vector2(150, 100);
             _subbuttonstrans[i].localPosition = new Vector2(140 + i * 160, 980);
-            _subbuttons[i].transform.SetParent(UIFURNI.transform);
+            _subbuttons[i].transform.SetParent(UIINPLAN.transform);
         }
-        UIFURNI.SetActive(false);
+        UIINPLAN.SetActive(false);
 
         UIDIR = new GameObject();
         if (UIDIR.GetComponent<RectTransform>() == null)
@@ -142,7 +159,7 @@ public class CAMERABUTTON : MonoBehaviour
         _dirbuttonsimages[0].sprite = _buttonssprite;
 
         _dirbuttonstrans[0].sizeDelta = new Vector2(100, 100);
-        _dirbuttonstrans[0].localPosition = new Vector2(220, 860);
+        _dirbuttonstrans[0].localPosition = new Vector2(220, 750);
         _dirbuttons[0].transform.SetParent(UIDIR.transform);
         for (int i = 1; i < 4; i++)
         {
@@ -164,21 +181,119 @@ public class CAMERABUTTON : MonoBehaviour
                 _dirbuttonsimages[i].sprite = _buttonssprite;
 
                 _dirbuttonstrans[i].sizeDelta = new Vector2(100, 100);
-                _dirbuttonstrans[i].localPosition = new Vector2(20 + i * 100, 760);
+                _dirbuttonstrans[i].localPosition = new Vector2(20 + i * 100, 650);
                 _dirbuttons[i].transform.SetParent(UIDIR.transform);
         }
         UIDIR.SetActive(false);
+
+        UIFLOOR = new GameObject();
+        UIFLOOR.transform.SetParent(UIINPLAN.transform);
+        _floorbuttons = new GameObject[4];
+        _floorbuttonstrans = new RectTransform[4];
+        _floorbuttonsimages = new Image[4];
+        for (int i = 0; i < 4; i++)
+        {
+            _floorbuttons[i] = new GameObject();
+            if (_floorbuttons[i].GetComponent<RectTransform>() == null)
+            {
+                _floorbuttons[i].AddComponent<RectTransform>();
+                _floorbuttonstrans[i] = _floorbuttons[i].GetComponent<RectTransform>();
+            }
+            else
+                _floorbuttonstrans[i] = _floorbuttons[i].GetComponent<RectTransform>();
+            if (_floorbuttons[i].GetComponent<Image>() == null)
+            {
+                _floorbuttons[i].AddComponent<Image>();
+                _floorbuttonsimages[i] = _floorbuttons[i].GetComponent<Image>();
+            }
+            else
+                _floorbuttonsimages[i] = _floorbuttons[i].GetComponent<Image>();
+            _floorbuttonsimages[i].sprite = _buttonssprite;
+
+            _floorbuttonstrans[i].transform.SetParent(UIFLOOR.transform);
+            _floorbuttonstrans[i].sizeDelta = new Vector2(100, 100);
+            _floorbuttonstrans[i].localPosition = new Vector2(120 + i * 100, 870);
+            _floorbuttonstrans[i].transform.SetParent(UIFLOOR.transform);
+        }
+        UIFLOOR.SetActive(false);
+
+        UIDOOR = new GameObject();
+        UIDOOR.transform.SetParent(UIINPLAN.transform);
+        _doorbuttons = new GameObject[4];
+        _doorbuttonstrans = new RectTransform[4];
+        _doorbuttonsimages = new Image[4];
+        for (int i = 0; i < 4; i++)
+        {
+            _doorbuttons[i] = new GameObject();
+            if (_doorbuttons[i].GetComponent<RectTransform>() == null)
+            {
+                _doorbuttons[i].AddComponent<RectTransform>();
+                _doorbuttonstrans[i] = _doorbuttons[i].GetComponent<RectTransform>();
+            }
+            else
+                _doorbuttonstrans[i] = _doorbuttons[i].GetComponent<RectTransform>();
+            if (_doorbuttons[i].GetComponent<Image>() == null)
+            {
+                _doorbuttons[i].AddComponent<Image>();
+                _doorbuttonsimages[i] = _doorbuttons[i].GetComponent<Image>();
+            }
+            else
+                _doorbuttonsimages[i] = _doorbuttons[i].GetComponent<Image>();
+            _doorbuttonsimages[i].sprite = _buttonssprite;
+
+            _doorbuttonstrans[i].transform.SetParent(UIDOOR.transform);
+            _doorbuttonstrans[i].sizeDelta = new Vector2(100, 100);
+            _doorbuttonstrans[i].localPosition = new Vector2(120 + i * 100, 870);
+            _doorbuttonstrans[i].transform.SetParent(UIDOOR.transform);
+        }
+        UIDOOR.SetActive(false);
+
+        UIWALL = new GameObject();
+        UIWALL.transform.SetParent(UIINPLAN.transform);
+        _wallbuttons = new GameObject[4];
+        _wallbuttonstrans = new RectTransform[4];
+        _wallbuttonsimages = new Image[4];
+        for (int i = 0; i < 4; i++)
+        {
+            _wallbuttons[i] = new GameObject();
+            if (_wallbuttons[i].GetComponent<RectTransform>() == null)
+            {
+                _wallbuttons[i].AddComponent<RectTransform>();
+                _wallbuttonstrans[i] = _wallbuttons[i].GetComponent<RectTransform>();
+            }
+            else
+                _wallbuttonstrans[i] = _wallbuttons[i].GetComponent<RectTransform>();
+            if (_wallbuttons[i].GetComponent<Image>() == null)
+            {
+                _wallbuttons[i].AddComponent<Image>();
+                _wallbuttonsimages[i] = _wallbuttons[i].GetComponent<Image>();
+            }
+            else
+                _wallbuttonsimages[i] = _wallbuttons[i].GetComponent<Image>();
+            _wallbuttonsimages[i].sprite = _buttonssprite;
+
+            _wallbuttonstrans[i].transform.SetParent(UIWALL.transform);
+            _wallbuttonstrans[i].sizeDelta = new Vector2(100, 100);
+            _wallbuttonstrans[i].localPosition = new Vector2(120 + i * 100, 870);
+            _wallbuttonstrans[i].transform.SetParent(UIWALL.transform);
+        }
+        UIWALL.SetActive(false);
     }
 
     private void Start()
     {
         _control.SwitchingTo1();
-        UIFURNI.SetActive(true);
+        UIINPLAN.SetActive(true);
         FURNISLOTS.SetActive(false);
         UIDIR.SetActive(false);
         UITHIRD.SetActive(false);
         _opensub = true;
         _opendir = false;
+
+        _openfloor = true;
+        _openwall = false;
+        _opendoor = false;
+        UIFLOOR.SetActive(true);
     }
     void Update()
     {
@@ -188,12 +303,19 @@ public class CAMERABUTTON : MonoBehaviour
         {
             Debug.Log("asdadf");
             _control.SwitchingTo1();
-            UIFURNI.SetActive(true);
+            UIINPLAN.SetActive(true);
             FURNISLOTS.SetActive(false);
             UIDIR.SetActive(false);
             UITHIRD.SetActive(false);
             _opensub = true;
             _opendir = false;
+
+            _openwall = false;
+            _opendoor = false;
+            _openfloor = true;
+            UIWALL.SetActive(false);
+            UIDOOR.SetActive(false);
+            UIFLOOR.SetActive(true);
         }
         if (Input.GetMouseButtonDown(0) &&
         _buttonstrans[1].position.x - 75 < Input.mousePosition.x && Input.mousePosition.x < _buttonstrans[1].position.x + 75 &&
@@ -201,13 +323,19 @@ public class CAMERABUTTON : MonoBehaviour
         {
             Debug.Log("sasgasf");
             _control.SwitchingTo2();
-            UIFURNI.SetActive(false);
+            UIINPLAN.SetActive(false);
             FURNISLOTS.SetActive(true);
             UIDIR.SetActive(false);
             UITHIRD.SetActive(true);
             _control.SwitchingToFloor();
             _opensub = false;
             _opendir = false;
+            UIWALL.SetActive(false);
+            UIDOOR.SetActive(false);
+            UIFLOOR.SetActive(false);
+            _openfloor = false;
+            _openwall = false;
+            _opendoor = false;
         }
         if (Input.GetMouseButtonDown(0) &&
         _buttonstrans[2].position.x - 75 < Input.mousePosition.x && Input.mousePosition.x < _buttonstrans[2].position.x + 75 &&
@@ -215,12 +343,18 @@ public class CAMERABUTTON : MonoBehaviour
         {
             Debug.Log("aasgvasf");
             _control.SwitchingTo3();
-            UIFURNI.SetActive(false);
+            UIINPLAN.SetActive(false);
             FURNISLOTS.SetActive(false);
             UIDIR.SetActive(false);
             UITHIRD.SetActive(false);
             _opensub = false;
             _opendir = false;
+            UIWALL.SetActive(false);
+            UIDOOR.SetActive(false);
+            UIFLOOR.SetActive(false);
+            _openfloor = false;
+            _openwall = false;
+            _opendoor = false;
         }
         if (_opensub == true)
         {
@@ -233,6 +367,12 @@ public class CAMERABUTTON : MonoBehaviour
                 _control.SwitchingToFloor();
                 UIDIR.SetActive(false);
                 _opendir = false;
+                _openwall = false;
+                _opendoor = false;
+                _openfloor = true;
+                UIWALL.SetActive(false);
+                UIDOOR.SetActive(false);
+                UIFLOOR.SetActive(true);
             }
             if (Input.GetMouseButtonDown(0) &&
                 _subbuttonstrans[1].position.x - 75 < Input.mousePosition.x && Input.mousePosition.x < _subbuttonstrans[1].position.x + 75 &&
@@ -243,6 +383,12 @@ public class CAMERABUTTON : MonoBehaviour
                 _control.SwitchingToWall();
                 UIDIR.SetActive(true);
                 _opendir = true;
+                _opendoor = false;
+                _openfloor = false;
+                _openwall = true;
+                UIDOOR.SetActive(false);
+                UIFLOOR.SetActive(false);
+                UIWALL.SetActive(true);
             }
             if (Input.GetMouseButtonDown(0) &&
                 _subbuttonstrans[2].position.x - 75 < Input.mousePosition.x && Input.mousePosition.x < _subbuttonstrans[2].position.x + 75 &&
@@ -253,6 +399,12 @@ public class CAMERABUTTON : MonoBehaviour
                 _control.SwitchingToDoor();
                 UIDIR.SetActive(true);
                 _opendir = true;
+                _openfloor = false;
+                _openwall = false;
+                _opendoor = true;
+                UIWALL.SetActive(false);
+                UIFLOOR.SetActive(false);
+                UIDOOR.SetActive(true);
             }
             
             if (_opendir == true)
@@ -286,6 +438,101 @@ public class CAMERABUTTON : MonoBehaviour
                     _control.SwitchingToRight();
                 }
             }
+
+            if(_openfloor == true)
+            {
+                if (Input.GetMouseButtonDown(0) &&
+                    _floorbuttonstrans[0].position.x - 50 < Input.mousePosition.x && Input.mousePosition.x < _floorbuttonstrans[0].position.x + 50 &&
+                    _floorbuttonstrans[0].position.y - 50 < Input.mousePosition.y && Input.mousePosition.y < _floorbuttonstrans[0].position.y + 50)
+                {
+                    Debug.Log("바닥1");
+                    //함수
+                }
+                if (Input.GetMouseButtonDown(0) &&
+                    _floorbuttonstrans[1].position.x - 50 < Input.mousePosition.x && Input.mousePosition.x < _floorbuttonstrans[1].position.x + 50 &&
+                    _floorbuttonstrans[0].position.y - 50 < Input.mousePosition.y && Input.mousePosition.y < _floorbuttonstrans[0].position.y + 50)
+                {
+                    Debug.Log("바닥2");
+                    //함수
+                }
+                if (Input.GetMouseButtonDown(0) &&
+                    _floorbuttonstrans[2].position.x - 50 < Input.mousePosition.x && Input.mousePosition.x < _floorbuttonstrans[2].position.x + 50 &&
+                    _floorbuttonstrans[0].position.y - 50 < Input.mousePosition.y && Input.mousePosition.y < _floorbuttonstrans[0].position.y + 50)
+                {
+                    Debug.Log("바닥3");
+                    //함수
+                }
+                if (Input.GetMouseButtonDown(0) &&
+                    _floorbuttonstrans[3].position.x - 50 < Input.mousePosition.x && Input.mousePosition.x < _dirbuttonstrans[3].position.x + 50 &&
+                    _floorbuttonstrans[0].position.y - 50 < Input.mousePosition.y && Input.mousePosition.y < _dirbuttonstrans[0].position.y + 50)
+                {
+                    Debug.Log("바닥4");
+                    //함수
+                }
+            }
+            if (_openwall == true)
+            {
+                if (Input.GetMouseButtonDown(0) &&
+                    _wallbuttonstrans[0].position.x - 50 < Input.mousePosition.x && Input.mousePosition.x < _wallbuttonstrans[0].position.x + 50 &&
+                    _wallbuttonstrans[0].position.y - 50 < Input.mousePosition.y && Input.mousePosition.y < _wallbuttonstrans[0].position.y + 50)
+                {
+                    Debug.Log("벽1");
+                    //함수
+                }
+                if (Input.GetMouseButtonDown(0) &&
+                    _wallbuttonstrans[1].position.x - 50 < Input.mousePosition.x && Input.mousePosition.x < _wallbuttonstrans[1].position.x + 50 &&
+                    _wallbuttonstrans[0].position.y - 50 < Input.mousePosition.y && Input.mousePosition.y < _wallbuttonstrans[0].position.y + 50)
+                {
+                    Debug.Log("벽2");
+                    //함수
+                }
+                if (Input.GetMouseButtonDown(0) &&
+                    _wallbuttonstrans[2].position.x - 50 < Input.mousePosition.x && Input.mousePosition.x < _wallbuttonstrans[2].position.x + 50 &&
+                    _floorbuttonstrans[0].position.y - 50 < Input.mousePosition.y && Input.mousePosition.y < _floorbuttonstrans[0].position.y + 50)
+                {
+                    Debug.Log("벽3");
+                    //함수
+                }
+                if (Input.GetMouseButtonDown(0) &&
+                    _wallbuttonstrans[3].position.x - 50 < Input.mousePosition.x && Input.mousePosition.x < _wallbuttonstrans[3].position.x + 50 &&
+                    _floorbuttonstrans[0].position.y - 50 < Input.mousePosition.y && Input.mousePosition.y < _dirbuttonstrans[0].position.y + 50)
+                {
+                    Debug.Log("벽4");
+                    //함수
+                }
+            }
+            if (_opendoor == true)
+            {
+                if (Input.GetMouseButtonDown(0) &&
+                    _doorbuttonstrans[0].position.x - 50 < Input.mousePosition.x && Input.mousePosition.x < _doorbuttonstrans[0].position.x + 50 &&
+                    _doorbuttonstrans[0].position.y - 50 < Input.mousePosition.y && Input.mousePosition.y < _doorbuttonstrans[0].position.y + 50)
+                {
+                    Debug.Log("문1");
+                    //함수
+                }
+                if (Input.GetMouseButtonDown(0) &&
+                    _doorbuttonstrans[1].position.x - 50 < Input.mousePosition.x && Input.mousePosition.x < _doorbuttonstrans[1].position.x + 50 &&
+                    _doorbuttonstrans[0].position.y - 50 < Input.mousePosition.y && Input.mousePosition.y < _doorbuttonstrans[0].position.y + 50)
+                {
+                    Debug.Log("문2");
+                    //함수
+                }
+                if (Input.GetMouseButtonDown(0) &&
+                    _doorbuttonstrans[2].position.x - 50 < Input.mousePosition.x && Input.mousePosition.x < _doorbuttonstrans[2].position.x + 50 &&
+                    _doorbuttonstrans[0].position.y - 50 < Input.mousePosition.y && Input.mousePosition.y < _doorbuttonstrans[0].position.y + 50)
+                {
+                    Debug.Log("문3");
+                    //함수
+                }
+                if (Input.GetMouseButtonDown(0) &&
+                    _doorbuttonstrans[3].position.x - 50 < Input.mousePosition.x && Input.mousePosition.x < _doorbuttonstrans[3].position.x + 50 &&
+                    _doorbuttonstrans[0].position.y - 50 < Input.mousePosition.y && Input.mousePosition.y < _doorbuttonstrans[0].position.y + 50)
+                {
+                    Debug.Log("문4");
+                    //함수
+                }
+            }
+
         }
     }
 }
