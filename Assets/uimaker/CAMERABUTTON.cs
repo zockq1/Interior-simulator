@@ -17,6 +17,8 @@ public class CAMERABUTTON : MonoBehaviour
     RectTransform[] _buttonstrans;
     Image[] _buttonsimages;
 
+    [SerializeField]
+    GameObject UITHIRD;
     GameObject UIFURNI;
     RectTransform UIFURNITRAN;
     Image UIFURNIIMAGE;
@@ -36,9 +38,11 @@ public class CAMERABUTTON : MonoBehaviour
     [SerializeField]
     Sprite _buttonssprite;
 
+
+
     void Awake()
     {
-        Screen.SetResolution(1920, 1080, false); //800x600
+        Screen.SetResolution(1920, 1080, false); 
         _buttons = new GameObject[3];
         _buttonstrans = new RectTransform[3];
         _buttonsimages = new Image[3];
@@ -66,7 +70,6 @@ public class CAMERABUTTON : MonoBehaviour
         }
         _control = CONTROL.GetComponent<control>();
         _UIFurnituresComp = CONTROL.GetComponent<UIFurnituresComp>();
-
 
         UIFURNI = new GameObject();
         if (UIFURNI.GetComponent<RectTransform>() == null)
@@ -173,6 +176,7 @@ public class CAMERABUTTON : MonoBehaviour
         UIFURNI.SetActive(true);
         FURNISLOTS.SetActive(false);
         UIDIR.SetActive(false);
+        UITHIRD.SetActive(false);
         _opensub = true;
         _opendir = false;
     }
@@ -187,6 +191,7 @@ public class CAMERABUTTON : MonoBehaviour
             UIFURNI.SetActive(true);
             FURNISLOTS.SetActive(false);
             UIDIR.SetActive(false);
+            UITHIRD.SetActive(false);
             _opensub = true;
             _opendir = false;
         }
@@ -199,8 +204,9 @@ public class CAMERABUTTON : MonoBehaviour
             UIFURNI.SetActive(false);
             FURNISLOTS.SetActive(true);
             UIDIR.SetActive(false);
+            UITHIRD.SetActive(true);
             _control.SwitchingToFloor();
-            _opensub = true;
+            _opensub = false;
             _opendir = false;
         }
         if (Input.GetMouseButtonDown(0) &&
@@ -212,6 +218,7 @@ public class CAMERABUTTON : MonoBehaviour
             UIFURNI.SetActive(false);
             FURNISLOTS.SetActive(false);
             UIDIR.SetActive(false);
+            UITHIRD.SetActive(false);
             _opensub = false;
             _opendir = false;
         }
