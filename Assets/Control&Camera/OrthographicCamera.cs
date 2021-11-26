@@ -7,7 +7,7 @@ using UnityEngine;
 *마우스 휠로 줌인, 줌아웃
 *B711205탁재민
 */
-public class OrthographicCameraMove : MonoBehaviour
+public class OrthographicCamera : MonoBehaviour
 {
     // Start is called before the first frame update
 

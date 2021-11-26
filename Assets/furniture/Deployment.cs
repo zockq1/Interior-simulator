@@ -56,18 +56,28 @@ public class Deployment : MonoBehaviour
         }
 
         //아직 배치되지 않았을 시 우클릭으로 가구 회전(모델이 z축이 높이인 경우와, y축이 높이인 경우 확인)
-        if(!isdeployment && Input.GetKey(KeyCode.R) && (gameObject.layer == 9)){
+        if(!isdeployment && Input.GetKey(KeyCode.E) && (gameObject.layer == 9)){
             
             transform.Rotate (0, 0.5f, 0);
         }
 
-        if(!isdeployment && Input.GetKey(KeyCode.R) && (gameObject.layer == 8)){
+        if(!isdeployment && Input.GetKey(KeyCode.E) && (gameObject.layer == 8)){
             
-            transform.Rotate (0, 0, .5f);
+            transform.Rotate (0, 0, 0.5f);
+        }
+
+        if(!isdeployment && Input.GetKey(KeyCode.Q) && (gameObject.layer == 9)){
+            
+            transform.Rotate (0, -0.5f, 0);
+        }
+
+        if(!isdeployment && Input.GetKey(KeyCode.Q) && (gameObject.layer == 8)){
+            
+            transform.Rotate (0, 0, -0.5f);
         }
 
         //아직 배치되지 않았을 시 휠 버튼으로 가구 좌우반전
-        if(!isdeployment && Input.GetKeyDown(KeyCode.F)){
+        if(!isdeployment && Input.GetKeyDown(KeyCode.R)){
             float x = transform.localScale.x;
             float y = transform.localScale.y;
             float z = transform.localScale.z;

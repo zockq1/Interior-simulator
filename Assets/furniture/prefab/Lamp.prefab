@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5524061885836887380}
   - component: {fileID: 7172094243381577343}
   - component: {fileID: 8183470224629144219}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Lamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 2882707069867785797}
   - component: {fileID: 5894317089635158231}
   - component: {fileID: 4074118848149742997}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 4591097909797203821}
   - component: {fileID: 4952499272396700762}
   - component: {fileID: 4680235355056848246}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -276,7 +276,7 @@ GameObject:
   - component: {fileID: 8582557626236496787}
   - component: {fileID: 4439787228767650065}
   - component: {fileID: 5493585310359904349}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CFL_T8_18W
   m_TagString: Untagged
   m_Icon: {fileID: 0}

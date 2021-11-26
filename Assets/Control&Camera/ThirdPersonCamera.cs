@@ -9,18 +9,21 @@ using UnityEngine;
 */
 public class ThirdPersonCamera : MonoBehaviour
 {
-    private Vector2 anchor, current, pos;
-     private float X;
-     private float Y;
-    // Start is called before the first frame update
+    
+    private float X;
+    private float Y;
+    
     void Start()
     {
-        
+        //초기 카메라 각도 받아오기
+        X = transform.eulerAngles.x;
+        Y = transform.eulerAngles.y;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
+        //앞뒤상하좌우 이동
         if(GameObject.Find("control").GetComponent<control>().mode == 2){
             if(Input.GetKey(KeyCode.A))
             {
@@ -52,15 +55,10 @@ public class ThirdPersonCamera : MonoBehaviour
                 transform.Translate(Vector3.down * Time.deltaTime * 3);
             }
 
-            //float wheel = Input.GetAxis("Mouse ScrollWheel");
-            //this.GetComponent<Camera>().fieldOfView -= wheel * 20;
-            
-
-            
+            //카메라 회전
             if(Input.GetMouseButton(1)) {
-                transform.Rotate(new Vector3(-Input.GetAxis("Mouse Y") * 3, Input.GetAxis("Mouse X") * 3, 0));
-                X = transform.rotation.eulerAngles.x;
-                Y = transform.rotation.eulerAngles.y;
+                X += -Input.GetAxis("Mouse Y") * 3; //카메라를 좌우로 드래그 한만큼 키존 카메라 각도에 더함
+                Y += Input.GetAxis("Mouse X") * 3 ; //카메라를 위아래로 드래그 한만큼 키존 카메라 각도에 더함
                 transform.rotation = Quaternion.Euler(X, Y, 0);
             }
         }

@@ -77,6 +77,34 @@ public class control : MonoBehaviour
         camera2.tag = "StandbyCamera";
         camera3.enabled = false;
         camera3.tag = "StandbyCamera";
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    public void SwitchingTo2(){
+        mode = 2;
+        Destroy(GameObject.FindWithTag("Deploying"));
+        camera1.enabled = false;
+        camera1.tag = "StandbyCamera";
+        camera2.enabled = true;
+        camera2.tag = "MainCamera";
+        camera3.enabled = false;
+        camera3.tag = "StandbyCamera";
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    public void SwitchingTo3(){
+        mode = 3;
+        Destroy(GameObject.FindWithTag("Deploying"));
+        camera1.enabled = false;
+        camera1.tag = "StandbyCamera";
+        camera2.enabled = false;
+        camera2.tag = "StandbyCamera";
+        camera3.enabled = true;
+        camera3.tag = "MainCamera";
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void SwitchingToFloor(){
@@ -106,27 +134,4 @@ public class control : MonoBehaviour
     public void SwitchingToRight(){
         mode_1_direction = 4;
     }
-
-    public void SwitchingTo2(){
-        mode = 2;
-        Destroy(GameObject.FindWithTag("Deploying"));
-        camera1.enabled = false;
-        camera1.tag = "StandbyCamera";
-        camera2.enabled = true;
-        camera2.tag = "MainCamera";
-        camera3.enabled = false;
-        camera3.tag = "StandbyCamera";
-    }
-
-    public void SwitchingTo3(){
-        mode = 3;
-        Destroy(GameObject.FindWithTag("Deploying"));
-        camera1.enabled = false;
-        camera1.tag = "StandbyCamera";
-        camera2.enabled = false;
-        camera2.tag = "StandbyCamera";
-        camera3.enabled = true;
-        camera3.tag = "MainCamera";
-    }
-
 }
