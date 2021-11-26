@@ -4,21 +4,22 @@ using UnityEngine;
 
 public class RoofMove : MonoBehaviour
 {
-    Vector3 targetPos;
-    // Start is called before the first frame update
+    Vector3 roofPos;
+    public GameObject roof;
+
+    // 시작되면 천장 바로 생성.
     void Start()
     {
-        
+        GameObject go = Instantiate(roof) as GameObject;
+        roofPos.x = 10.0f;
+        roofPos.y = 2.4f;
+        roofPos.z = 10.0f;
+        go.transform.position = roofPos;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Alpha4) == true)
-        {
-            targetPos = transform.position;
-            targetPos.y = 2.2f ;
-            transform.position = targetPos;
-        }
+        
     }
 }
