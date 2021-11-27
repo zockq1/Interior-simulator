@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class RoofMove : MonoBehaviour
 {
+    /*
+     * B911035 김세환
+     * 넓은 면적의 plane을 뒤집어서 천장 생성
+     * plane을 x축을 기준으로 180도 회전하면 
+     * plane이 물체 위에 있다고 하더라도 plane 밑의 물체들이 보이는 것을 이용함.
+     * 시작하자마자 planePrefab이 생성되고, 해당하는 위치로 가도록 함.
+     */
+
     Vector3 roofPos;
     public GameObject roof;
 
