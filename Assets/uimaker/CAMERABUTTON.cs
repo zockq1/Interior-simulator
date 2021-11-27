@@ -8,6 +8,9 @@ public class CAMERABUTTON : MonoBehaviour
     [SerializeField]
     public GameObject CONTROL;
     control _control;
+    CreateFloor _cf;
+    CreateWall _cw;
+    CreateDoor _cd;
 
     [SerializeField]
     public GameObject FURNISLOTS;
@@ -18,7 +21,13 @@ public class CAMERABUTTON : MonoBehaviour
     Image[] _buttonsimages;
 
     [SerializeField]
+    GameObject UIPLAN;
+    [SerializeField]
     GameObject UITHIRD;
+    [SerializeField]
+    GameObject UIFIRST;
+
+
     GameObject UIINPLAN;
     RectTransform UIINPLANTRAN;
     Image UIINPLANIMAGE;
@@ -36,7 +45,7 @@ public class CAMERABUTTON : MonoBehaviour
     bool _opendir = false;
 
     [SerializeField]
-    Sprite _buttonssprite;
+    Sprite[] _buttonssprites;
 
     GameObject UIFLOOR; //바닥
     GameObject[] _floorbuttons;
@@ -80,7 +89,7 @@ public class CAMERABUTTON : MonoBehaviour
             }
             else
                 _buttonsimages[i] = _buttons[i].GetComponent<Image>();
-            _buttonsimages[i].sprite = _buttonssprite;
+            _buttonsimages[i].sprite = _buttonssprites[i];
 
             _buttonstrans[i].sizeDelta = new Vector2(150, 100);
             _buttonstrans[i].localPosition = new Vector2(500 + i*160, 450);
@@ -119,7 +128,7 @@ public class CAMERABUTTON : MonoBehaviour
             }
             else
                 _subbuttonsimages[i] = _subbuttons[i].GetComponent<Image>();
-            _subbuttonsimages[i].sprite = _buttonssprite;
+            _subbuttonsimages[i].sprite = _buttonssprites[3+i];
 
             _subbuttonstrans[i].sizeDelta = new Vector2(150, 100);
             _subbuttonstrans[i].localPosition = new Vector2(140 + i * 160, 980);
@@ -156,7 +165,7 @@ public class CAMERABUTTON : MonoBehaviour
         }
         else
             _dirbuttonsimages[0] = _dirbuttons[0].GetComponent<Image>();
-        _dirbuttonsimages[0].sprite = _buttonssprite;
+        _dirbuttonsimages[0].sprite = _buttonssprites[6];
 
         _dirbuttonstrans[0].sizeDelta = new Vector2(100, 100);
         _dirbuttonstrans[0].localPosition = new Vector2(220, 750);
@@ -178,7 +187,7 @@ public class CAMERABUTTON : MonoBehaviour
             }
             else
                 _dirbuttonsimages[i] = _dirbuttons[i].GetComponent<Image>();
-                _dirbuttonsimages[i].sprite = _buttonssprite;
+                _dirbuttonsimages[i].sprite = _buttonssprites[6+i];
 
                 _dirbuttonstrans[i].sizeDelta = new Vector2(100, 100);
                 _dirbuttonstrans[i].localPosition = new Vector2(20 + i * 100, 650);
@@ -208,7 +217,7 @@ public class CAMERABUTTON : MonoBehaviour
             }
             else
                 _floorbuttonsimages[i] = _floorbuttons[i].GetComponent<Image>();
-            _floorbuttonsimages[i].sprite = _buttonssprite;
+            _floorbuttonsimages[i].sprite = _buttonssprites[10 + i];
 
             _floorbuttonstrans[i].transform.SetParent(UIFLOOR.transform);
             _floorbuttonstrans[i].sizeDelta = new Vector2(100, 100);
@@ -222,7 +231,7 @@ public class CAMERABUTTON : MonoBehaviour
         _doorbuttons = new GameObject[4];
         _doorbuttonstrans = new RectTransform[4];
         _doorbuttonsimages = new Image[4];
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 2; i++)
         {
             _doorbuttons[i] = new GameObject();
             if (_doorbuttons[i].GetComponent<RectTransform>() == null)
@@ -239,7 +248,7 @@ public class CAMERABUTTON : MonoBehaviour
             }
             else
                 _doorbuttonsimages[i] = _doorbuttons[i].GetComponent<Image>();
-            _doorbuttonsimages[i].sprite = _buttonssprite;
+            _doorbuttonsimages[i].sprite = _buttonssprites[14 + i];
 
             _doorbuttonstrans[i].transform.SetParent(UIDOOR.transform);
             _doorbuttonstrans[i].sizeDelta = new Vector2(100, 100);
@@ -270,7 +279,7 @@ public class CAMERABUTTON : MonoBehaviour
             }
             else
                 _wallbuttonsimages[i] = _wallbuttons[i].GetComponent<Image>();
-            _wallbuttonsimages[i].sprite = _buttonssprite;
+            _wallbuttonsimages[i].sprite = _buttonssprites[18 + i];
 
             _wallbuttonstrans[i].transform.SetParent(UIWALL.transform);
             _wallbuttonstrans[i].sizeDelta = new Vector2(100, 100);
@@ -278,6 +287,10 @@ public class CAMERABUTTON : MonoBehaviour
             _wallbuttonstrans[i].transform.SetParent(UIWALL.transform);
         }
         UIWALL.SetActive(false);
+
+        _cf = CONTROL.GetComponent<CreateFloor>();
+        _cw = CONTROL.GetComponent<CreateWall>();
+        _cd = CONTROL.GetComponent<CreateDoor>();
     }
 
     private void Start()
@@ -287,6 +300,9 @@ public class CAMERABUTTON : MonoBehaviour
         FURNISLOTS.SetActive(false);
         UIDIR.SetActive(false);
         UITHIRD.SetActive(false);
+        UIFIRST.SetActive(false);
+        UIPLAN.SetActive(true);
+
         _opensub = true;
         _opendir = false;
 
@@ -308,6 +324,9 @@ public class CAMERABUTTON : MonoBehaviour
             FURNISLOTS.SetActive(false);
             UIDIR.SetActive(false);
             UITHIRD.SetActive(false);
+            UIFIRST.SetActive(false);
+            UIPLAN.SetActive(true);
+
             _opensub = true;
             _opendir = false;
 
@@ -329,6 +348,8 @@ public class CAMERABUTTON : MonoBehaviour
             FURNISLOTS.SetActive(true);
             UIDIR.SetActive(false);
             UITHIRD.SetActive(true);
+            UIFIRST.SetActive(false);
+            UIPLAN.SetActive(false);
             _control.SwitchingToFloor();
             _opensub = false;
             _opendir = false;
@@ -350,6 +371,8 @@ public class CAMERABUTTON : MonoBehaviour
             FURNISLOTS.SetActive(false);
             UIDIR.SetActive(false);
             UITHIRD.SetActive(false);
+            UIFIRST.SetActive(true);
+            UIPLAN.SetActive(false);
             _opensub = false;
             _opendir = false;
             UIWALL.SetActive(false);
@@ -449,28 +472,28 @@ public class CAMERABUTTON : MonoBehaviour
                     _floorbuttonstrans[0].position.y - 50 < Input.mousePosition.y && Input.mousePosition.y < _floorbuttonstrans[0].position.y + 50)
                 {
                     Debug.Log("바닥1");
-                    //함수
+                    _cf.setFloorPrefab1();
                 }
                 if (Input.GetMouseButtonDown(0) &&
                     _floorbuttonstrans[1].position.x - 50 < Input.mousePosition.x && Input.mousePosition.x < _floorbuttonstrans[1].position.x + 50 &&
                     _floorbuttonstrans[0].position.y - 50 < Input.mousePosition.y && Input.mousePosition.y < _floorbuttonstrans[0].position.y + 50)
                 {
                     Debug.Log("바닥2");
-                    //함수
+                    _cf.setFloorPrefab2();
                 }
                 if (Input.GetMouseButtonDown(0) &&
                     _floorbuttonstrans[2].position.x - 50 < Input.mousePosition.x && Input.mousePosition.x < _floorbuttonstrans[2].position.x + 50 &&
                     _floorbuttonstrans[0].position.y - 50 < Input.mousePosition.y && Input.mousePosition.y < _floorbuttonstrans[0].position.y + 50)
                 {
                     Debug.Log("바닥3");
-                    //함수
+                    _cf.setFloorPrefab3();
                 }
                 if (Input.GetMouseButtonDown(0) &&
                     _floorbuttonstrans[3].position.x - 50 < Input.mousePosition.x && Input.mousePosition.x < _dirbuttonstrans[3].position.x + 50 &&
                     _floorbuttonstrans[0].position.y - 50 < Input.mousePosition.y && Input.mousePosition.y < _dirbuttonstrans[0].position.y + 50)
                 {
                     Debug.Log("바닥4");
-                    //함수
+                    _cf.setFloorPrefab4();
                 }
             }
             if (_openwall == true)
@@ -480,28 +503,28 @@ public class CAMERABUTTON : MonoBehaviour
                     _wallbuttonstrans[0].position.y - 50 < Input.mousePosition.y && Input.mousePosition.y < _wallbuttonstrans[0].position.y + 50)
                 {
                     Debug.Log("벽1");
-                    //함수
+                    _cw.setWallPrefab1();
                 }
                 if (Input.GetMouseButtonDown(0) &&
                     _wallbuttonstrans[1].position.x - 50 < Input.mousePosition.x && Input.mousePosition.x < _wallbuttonstrans[1].position.x + 50 &&
                     _wallbuttonstrans[0].position.y - 50 < Input.mousePosition.y && Input.mousePosition.y < _wallbuttonstrans[0].position.y + 50)
                 {
                     Debug.Log("벽2");
-                    //함수
+                    _cw.setWallPrefab2();
                 }
                 if (Input.GetMouseButtonDown(0) &&
                     _wallbuttonstrans[2].position.x - 50 < Input.mousePosition.x && Input.mousePosition.x < _wallbuttonstrans[2].position.x + 50 &&
                     _floorbuttonstrans[0].position.y - 50 < Input.mousePosition.y && Input.mousePosition.y < _floorbuttonstrans[0].position.y + 50)
                 {
                     Debug.Log("벽3");
-                    //함수
+                    _cw.setWallPrefab3();
                 }
                 if (Input.GetMouseButtonDown(0) &&
                     _wallbuttonstrans[3].position.x - 50 < Input.mousePosition.x && Input.mousePosition.x < _wallbuttonstrans[3].position.x + 50 &&
                     _floorbuttonstrans[0].position.y - 50 < Input.mousePosition.y && Input.mousePosition.y < _dirbuttonstrans[0].position.y + 50)
                 {
                     Debug.Log("벽4");
-                    //함수
+                    _cw.setWallPrefab4();
                 }
             }
             if (_opendoor == true)
@@ -511,28 +534,14 @@ public class CAMERABUTTON : MonoBehaviour
                     _doorbuttonstrans[0].position.y - 50 < Input.mousePosition.y && Input.mousePosition.y < _doorbuttonstrans[0].position.y + 50)
                 {
                     Debug.Log("문1");
-                    //함수
+                    _cd.setDoorPrefab1();
                 }
                 if (Input.GetMouseButtonDown(0) &&
                     _doorbuttonstrans[1].position.x - 50 < Input.mousePosition.x && Input.mousePosition.x < _doorbuttonstrans[1].position.x + 50 &&
                     _doorbuttonstrans[0].position.y - 50 < Input.mousePosition.y && Input.mousePosition.y < _doorbuttonstrans[0].position.y + 50)
                 {
                     Debug.Log("문2");
-                    //함수
-                }
-                if (Input.GetMouseButtonDown(0) &&
-                    _doorbuttonstrans[2].position.x - 50 < Input.mousePosition.x && Input.mousePosition.x < _doorbuttonstrans[2].position.x + 50 &&
-                    _doorbuttonstrans[0].position.y - 50 < Input.mousePosition.y && Input.mousePosition.y < _doorbuttonstrans[0].position.y + 50)
-                {
-                    Debug.Log("문3");
-                    //함수
-                }
-                if (Input.GetMouseButtonDown(0) &&
-                    _doorbuttonstrans[3].position.x - 50 < Input.mousePosition.x && Input.mousePosition.x < _doorbuttonstrans[3].position.x + 50 &&
-                    _doorbuttonstrans[0].position.y - 50 < Input.mousePosition.y && Input.mousePosition.y < _doorbuttonstrans[0].position.y + 50)
-                {
-                    Debug.Log("문4");
-                    //함수
+                    _cd.setDoorPrefab2();
                 }
             }
 
