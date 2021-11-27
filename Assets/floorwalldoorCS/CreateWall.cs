@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CreateWall : MonoBehaviour
 {
@@ -62,7 +63,7 @@ public class CreateWall : MonoBehaviour
     void Update()
     {
         //벽 생성 모드 ON/OFF
-        if (GameObject.Find("control").GetComponent<control>().mode == 1 && GameObject.Find("control").GetComponent<control>().mode_1 == 2)
+        if (GameObject.Find("control").GetComponent<control>().mode == 1 && GameObject.Find("control").GetComponent<control>().mode_1 == 2 && !EventSystem.current.IsPointerOverGameObject())
         {
             createPossibleWall = true;
         }
@@ -90,7 +91,7 @@ public class CreateWall : MonoBehaviour
         }
 
         //상하좌우 선택을 하고, 마우스 왼쪽을 클릭한 상태에서 끌고가면 벽 생성(왼쪽벽)
-        if (Input.GetMouseButton(0) == true  && createPossibleWall == true && doubleCheckLeft == true && GameObject.Find("control").GetComponent<control>().mode_1_direction==3)
+        if (Input.GetMouseButton(0) == true  && createPossibleWall == true && doubleCheckLeft == true && GameObject.Find("control").GetComponent<control>().mode_1_direction==3 && !EventSystem.current.IsPointerOverGameObject())
         {
             
                 gridpos = GameObject.Find("GridPos").GetComponent<GridPos>();
@@ -107,7 +108,7 @@ public class CreateWall : MonoBehaviour
         }
 
         //상하좌우 선택을 하고, 마우스 왼쪽을 클릭한 상태에서 끌고가면 벽 생성(오른쪽벽)
-        else if (Input.GetMouseButton(0) == true  && createPossibleWall == true && doubleCheckRight == true && GameObject.Find("control").GetComponent<control>().mode_1_direction == 4)
+        else if (Input.GetMouseButton(0) == true  && createPossibleWall == true && doubleCheckRight == true && GameObject.Find("control").GetComponent<control>().mode_1_direction == 4 && !EventSystem.current.IsPointerOverGameObject())
             {
                 gridpos = GameObject.Find("GridPos").GetComponent<GridPos>();
                 tempPosRight = gridpos.mouse_Pos;
@@ -124,7 +125,7 @@ public class CreateWall : MonoBehaviour
         }
 
         //상하좌우 선택을 하고, 마우스 왼쪽을 클릭한 상태에서 끌고가면 벽 생성(위쪽벽)
-        else if (Input.GetMouseButton(0) == true  && createPossibleWall == true && doubleCheckUp == true && GameObject.Find("control").GetComponent<control>().mode_1_direction == 1)
+        else if (Input.GetMouseButton(0) == true  && createPossibleWall == true && doubleCheckUp == true && GameObject.Find("control").GetComponent<control>().mode_1_direction == 1 && !EventSystem.current.IsPointerOverGameObject())
         {
                 gridpos = GameObject.Find("GridPos").GetComponent<GridPos>();
                 tempPosUp = gridpos.mouse_Pos;
@@ -142,7 +143,7 @@ public class CreateWall : MonoBehaviour
         }
 
         //상하좌우 선택을 하고, 마우스 왼쪽을 클릭한 상태에서 끌고가면 벽 생성(아래쪽벽)
-        else if (Input.GetMouseButton(0) == true  && createPossibleWall == true && doubleCheckDown == true && GameObject.Find("control").GetComponent<control>().mode_1_direction == 2)
+        else if (Input.GetMouseButton(0) == true  && createPossibleWall == true && doubleCheckDown == true && GameObject.Find("control").GetComponent<control>().mode_1_direction == 2 && !EventSystem.current.IsPointerOverGameObject())
         {
                 gridpos = GameObject.Find("GridPos").GetComponent<GridPos>();
                 tempPosDown = gridpos.mouse_Pos;

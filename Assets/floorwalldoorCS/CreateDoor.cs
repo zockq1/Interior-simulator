@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CreateDoor : MonoBehaviour
 {
@@ -66,7 +67,7 @@ public class CreateDoor : MonoBehaviour
     {
         
         //문설치 모드 On / Off
-        if (GameObject.Find("control").GetComponent<control>().mode == 1 && GameObject.Find("control").GetComponent<control>().mode_1 == 3)
+        if (GameObject.Find("control").GetComponent<control>().mode == 1 && GameObject.Find("control").GetComponent<control>().mode_1 == 3 && !EventSystem.current.IsPointerOverGameObject())
         {
             createPossibleDoor = true;
         }
@@ -95,7 +96,7 @@ public class CreateDoor : MonoBehaviour
         }
 
         //상하좌우 선택을 하고, 마우스 왼쪽을 클릭한 상태에서 끌고가면 문 생성(왼쪽문)
-        if (Input.GetMouseButton(0) == true && createPossibleDoor == true && doubleCheckLeft && GameObject.Find("control").GetComponent<control>().mode_1_direction == 3)
+        if (Input.GetMouseButton(0) == true && createPossibleDoor == true && doubleCheckLeft && GameObject.Find("control").GetComponent<control>().mode_1_direction == 3 && !EventSystem.current.IsPointerOverGameObject())
         {
             gridpos = GameObject.Find("GridPos").GetComponent<GridPos>();
             tempPosLeft = gridpos.mouse_Pos;
@@ -112,7 +113,7 @@ public class CreateDoor : MonoBehaviour
 
         }
         //상하좌우 선택을 하고, 마우스 왼쪽을 클릭한 상태에서 끌고가면 문 생성(오른쪽문)
-        else if (Input.GetMouseButton(0) == true && createPossibleDoor == true && doubleCheckRight && GameObject.Find("control").GetComponent<control>().mode_1_direction == 4)
+        else if (Input.GetMouseButton(0) == true && createPossibleDoor == true && doubleCheckRight && GameObject.Find("control").GetComponent<control>().mode_1_direction == 4 && !EventSystem.current.IsPointerOverGameObject())
         {
             gridpos = GameObject.Find("GridPos").GetComponent<GridPos>();
             tempPosRight = gridpos.mouse_Pos;
@@ -128,7 +129,7 @@ public class CreateDoor : MonoBehaviour
             doubleCheckRight = false;
         }
         //상하좌우 선택을 하고, 마우스 왼쪽을 클릭한 상태에서 끌고가면 문 생성(위쪽문)
-        else if (Input.GetMouseButton(0) == true && createPossibleDoor == true && doubleCheckUp && GameObject.Find("control").GetComponent<control>().mode_1_direction == 1)
+        else if (Input.GetMouseButton(0) == true && createPossibleDoor == true && doubleCheckUp && GameObject.Find("control").GetComponent<control>().mode_1_direction == 1 && !EventSystem.current.IsPointerOverGameObject())
         {
             gridpos = GameObject.Find("GridPos").GetComponent<GridPos>();
             tempPosUp = gridpos.mouse_Pos;
@@ -145,7 +146,7 @@ public class CreateDoor : MonoBehaviour
 
         }
         //상하좌우 선택을 하고, 마우스 왼쪽을 클릭한 상태에서 끌고가면 벽 생성(아래쪽벽)
-        else if (Input.GetMouseButton(0) == true && createPossibleDoor == true && doubleCheckDown && GameObject.Find("control").GetComponent<control>().mode_1_direction == 2)
+        else if (Input.GetMouseButton(0) == true && createPossibleDoor == true && doubleCheckDown && GameObject.Find("control").GetComponent<control>().mode_1_direction == 2 && !EventSystem.current.IsPointerOverGameObject())
         {
             gridpos = GameObject.Find("GridPos").GetComponent<GridPos>();
             tempPosDown = gridpos.mouse_Pos;
