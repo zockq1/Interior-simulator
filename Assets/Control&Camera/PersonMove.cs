@@ -15,6 +15,7 @@ public class PersonMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        gameObject.GetComponent<Renderer>().enabled = false;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         if(GameObject.Find("control").GetComponent<control>().mode == 3){
