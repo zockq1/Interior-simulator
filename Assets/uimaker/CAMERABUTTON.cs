@@ -297,9 +297,10 @@ public class CAMERABUTTON : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) &&
+        if ((Input.GetMouseButtonDown(0) &&
             _buttonstrans[0].position.x - 75 < Input.mousePosition.x && Input.mousePosition.x < _buttonstrans[0].position.x + 75 &&
             _buttonstrans[0].position.y - 50 < Input.mousePosition.y && Input.mousePosition.y < _buttonstrans[0].position.y + 50)
+            || Input.GetKeyDown(KeyCode.Alpha1))
         {
             Debug.Log("asdadf");
             _control.SwitchingTo1();
@@ -317,9 +318,10 @@ public class CAMERABUTTON : MonoBehaviour
             UIDOOR.SetActive(false);
             UIFLOOR.SetActive(true);
         }
-        if (Input.GetMouseButtonDown(0) &&
+        if ((Input.GetMouseButtonDown(0) &&
         _buttonstrans[1].position.x - 75 < Input.mousePosition.x && Input.mousePosition.x < _buttonstrans[1].position.x + 75 &&
          _buttonstrans[0].position.y - 50 < Input.mousePosition.y && Input.mousePosition.y < _buttonstrans[0].position.y + 50)
+         || Input.GetKeyDown(KeyCode.Alpha2))
         {
             Debug.Log("sasgasf");
             _control.SwitchingTo2();
@@ -337,9 +339,10 @@ public class CAMERABUTTON : MonoBehaviour
             _openwall = false;
             _opendoor = false;
         }
-        if (Input.GetMouseButtonDown(0) &&
+        if ((Input.GetMouseButtonDown(0) &&
         _buttonstrans[2].position.x - 75 < Input.mousePosition.x && Input.mousePosition.x < _buttonstrans[2].position.x + 75 &&
         _buttonstrans[0].position.y - 50 < Input.mousePosition.y && Input.mousePosition.y < _buttonstrans[0].position.y + 50)
+        || Input.GetKeyDown(KeyCode.Alpha3))
         {
             Debug.Log("aasgvasf");
             _control.SwitchingTo3();

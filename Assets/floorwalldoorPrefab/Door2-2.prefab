@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 9169525620496934583, guid: 49250b06ac7251445b464b90685fc104, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 54855cd8bad5af84a8f07226916e68bf, type: 2}
+      objectReference: {fileID: 2100000, guid: 9dc2564ff63a7ff449a5970960288819, type: 2}
     - target: {fileID: 9169525621111172240, guid: 49250b06ac7251445b464b90685fc104, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -57,7 +57,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9169525621111172255, guid: 49250b06ac7251445b464b90685fc104, type: 3}
       propertyPath: m_Name
-      value: Door1-2
+      value: Door2-2
       objectReference: {fileID: 0}
     - target: {fileID: 9169525621111172255, guid: 49250b06ac7251445b464b90685fc104, type: 3}
       propertyPath: m_TagString
@@ -66,6 +66,6 @@ PrefabInstance:
     - target: {fileID: 9169525621192129135, guid: 49250b06ac7251445b464b90685fc104, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 54855cd8bad5af84a8f07226916e68bf, type: 2}
+      objectReference: {fileID: 2100000, guid: 9dc2564ff63a7ff449a5970960288819, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49250b06ac7251445b464b90685fc104, type: 3}
