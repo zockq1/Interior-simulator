@@ -4,6 +4,18 @@ using UnityEngine;
 
 public class CreateFloor: MonoBehaviour
 {
+    /*
+     * B911035 김세환
+     * 도면 모드 상태에서 바닥 생성을 가능하도록함.
+     * 바닥 텍스쳐를 UI로 선택하고,  마우스 드래그로 바닥 생성 가능.
+     * GridPos.cs로 부터 마우스에 대한 xz평면의 좌표를 가져와서 이용함.
+     * 그 좌표 값들을 통해, 마우스를 클릭한후 드래그하여 마우스를 뗀 지점까지의 직사각형 면적에 대해 바닥 생성함.
+     * 생성된 바닥을 지우고 싶으면, 마우스 오른쪽키를 누르면됨.
+     * 오른쪽 마우스키를 누르면, ray를 쏴서 해당 ray가 floorprefab에 맞게 되면 floorprefabClone을 삭제함.
+     * 텍스쳐이미지는 직접 그린것이 아닌, 적합한 이미지를 가져옴.
+     */
+
+
     public GameObject FloorPrefab1;//나무바닥
     public GameObject FloorPrefab2;//타일바닥
     public GameObject FloorPrefab3;//대리석바닥
@@ -58,7 +70,7 @@ public class CreateFloor: MonoBehaviour
 
     private void Update()
     {
-
+        //바닥 생성 모드 ON/OFF
         if (GameObject.Find("control").GetComponent<control>().mode == 1 && GameObject.Find("control").GetComponent<control>().mode_1 == 1)
         {
             createPossibleFloor = true;
@@ -68,14 +80,14 @@ public class CreateFloor: MonoBehaviour
             createPossibleFloor = false;
         }
 
-
+        //벽 생성과 비슷한 방식으로 바닥 생성 추가
+        /*
+        //바닥 중복 생성 방지 코드
         if (tempPos != GameObject.Find("GridPos").GetComponent<GridPos>().mouse_Pos)
         {
             doubleCheck = true;
         }
-        
-        //벽 생성과 비슷한 방식으로 바닥 생성 추가
-        /*
+        //왼쪽 마우스 버튼을 클릭한 상태에서 이동하면 바닥이 생성됨.
         if (Input.GetMouseButton(0) && createPossibleFloor == true && doubleCheck == true)
         {
             gridpos = GameObject.Find("GridPos").GetComponent<GridPos>();
@@ -88,7 +100,8 @@ public class CreateFloor: MonoBehaviour
 
         }
         */
-        
+
+        //마우스를 드래그하여 해당 면적에 바닥을 생성함.
         if (Input.GetMouseButtonDown(0))
         {
             if (createPossibleFloor == true)
