@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 748767343044516977}
   - component: {fileID: 5897566101238175849}
-  - component: {fileID: 1341465677553019819}
   - component: {fileID: 1251521801778670746}
+  - component: {fileID: 1341465677553019819}
   m_Layer: 9
   m_Name: ikea_malm_fbx
   m_TagString: Untagged
@@ -55,19 +55,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1341465677553019819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 85558784929597131}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81bb1d300559e0a4fb33e4d24e283cd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  red: {fileID: 0}
 --- !u!65 &1251521801778670746
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -81,6 +68,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.1281343, y: 1.0327255, z: 1.7353725}
   m_Center: {x: -0.012123346, y: 0.49741396, z: -0.020694137}
+--- !u!114 &1341465677553019819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85558784929597131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81bb1d300559e0a4fb33e4d24e283cd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  red: {fileID: 0}
 --- !u!1 &382021780471358209
 GameObject:
   m_ObjectHideFlags: 0

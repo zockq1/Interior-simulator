@@ -20,9 +20,9 @@ using UnityEngine;
 */
 public class control : MonoBehaviour
 {
-    public int mode;
-    public int mode_1;
-    public int mode_1_direction;
+    public int mode;    //1:도면 작성, 2:가구 배치, 3:1인칭
+    public int mode_1;  //도면 작성 1:바닥, 2:벽, 3:문
+    public int mode_1_direction;//벽, 문 배치 1:상, 2:하, 3:좌, 4:우
     public Camera camera1, camera2, camera3;
     public bool isdeploying;
     void Start()

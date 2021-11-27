@@ -9,14 +9,6 @@ using UnityEngine;
 */
 public class OrthographicCamera : MonoBehaviour
 {
-    // Start is called before the first frame update
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if(GameObject.Find("control").GetComponent<control>().mode == 1){

@@ -10,11 +10,11 @@ using UnityEngine.EventSystems;
 */
 public class Deployment : MonoBehaviour
 {
-    private bool iscollision;
-    private bool isdeployment;
-    private bool isrelocation;
-    public GameObject red;
-    control f_control;
+    private bool iscollision; //충돌중인가?
+    private bool isdeployment;//배치되었는가?
+    private bool isrelocation;//재배치 상황인가?
+    public GameObject red;//충돌 시각화 오브젝트
+    control f_control;//모드 정보
 
     //변수 초기화 및 배치중이던 오브젝트 제거
     void Start()
@@ -33,11 +33,11 @@ public class Deployment : MonoBehaviour
     void Update()
     {
         //좌클릭으로 가구 배치, 이미 배치 되었거나, 충돌이 있거나, 재배치 시작 상황에서는 동작하지 않음
-        if (Input.GetMouseButtonDown(0) && !isdeployment && !iscollision && !isrelocation && !EventSystem.current.IsPointerOverGameObject())
+        if (Input.GetMouseButtonDown(0) && !isdeployment && !iscollision &&
+            !isrelocation && !EventSystem.current.IsPointerOverGameObject())
         {
             isdeployment = true;
             GetComponent<Collider>().isTrigger = true;
-            Debug.Log("배치치치치ㅣㅊ치ㅣ");
             GameObject.Find("control").GetComponent<control>().isdeploying = false;
             gameObject.tag = "Deployed";
         }
@@ -51,7 +51,6 @@ public class Deployment : MonoBehaviour
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if(Physics.Raycast (ray, out hit, 30.0f, _layerMask)){
                 this.transform.position = new Vector3((float)hit.point.x, (float)(hit.point.y), (float)hit.point.z);
-                Debug.Log(hit.normal);
             }
         }
 
@@ -76,7 +75,7 @@ public class Deployment : MonoBehaviour
             transform.Rotate (0, 0, -0.5f);
         }
 
-        //아직 배치되지 않았을 시 휠 버튼으로 가구 좌우반전
+        //아직 배치되지 않았을 시 R 버튼으로 가구 좌우반전
         if(!isdeployment && Input.GetKeyDown(KeyCode.R)){
             float x = transform.localScale.x;
             float y = transform.localScale.y;
@@ -94,10 +93,8 @@ public class Deployment : MonoBehaviour
     //배치되지 않은 상태에서 가구 충돌 감지
     void OnTriggerEnter(Collider other){
         if(!isdeployment){
-            //red.gameObject.SetActiverecursively( true );
             red.gameObject.SetActive(true);
             iscollision = true;
-            Debug.Log("Enter: 배치불가");
         }
     }
 
@@ -105,7 +102,6 @@ public class Deployment : MonoBehaviour
         if(!isdeployment){
             red.gameObject.SetActive(true);
             iscollision = true;
-            Debug.Log("stay: 배치불가");
         }
     }
 
@@ -113,7 +109,6 @@ public class Deployment : MonoBehaviour
         if(!isdeployment){
             red.gameObject.SetActive(false);
             iscollision = false;
-            Debug.Log("Eixt: 배치가능");
         }
     }
 
@@ -126,7 +121,6 @@ public class Deployment : MonoBehaviour
             isrelocation =  true;
             GetComponent<Collider>().isTrigger = false;
             GameObject.Find("control").GetComponent<control>().isdeploying = true;
-            Debug.Log("asdasdsa");
             gameObject.tag = "Deploying";
         }
     }
