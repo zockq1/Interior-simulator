@@ -102,7 +102,7 @@ public class CreateFloor: MonoBehaviour
         */
 
         //마우스를 드래그하여 해당 면적에 바닥을 생성함.
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             if (createPossibleFloor == true)
             {
@@ -117,7 +117,7 @@ public class CreateFloor: MonoBehaviour
             //마우스 드래그 중
         }
 
-        if (Input.GetMouseButtonUp(0) && buttonDown == true) //마우스 뗌
+        if (Input.GetMouseButtonUp(0) && buttonDown == true && !EventSystem.current.IsPointerOverGameObject()) //마우스 뗌
         {
             if (createPossibleFloor == true)
             {
