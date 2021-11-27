@@ -4,23 +4,37 @@ using UnityEngine;
 
 public class CreateDoor : MonoBehaviour
 {
+    /*
+     * B911035 김세환
+     * 도면 모드 상태에서 문을 생성 가능하도록함.
+     * 문 텍스쳐를 UI로 선택하고, 방향UI로 방향을 지정 후에 마우스 클릭으로 문 생성 가능.
+     * GridPos로 부터 마우스에 대한 xz평면의 좌표를 가져오고,
+     * 그 좌표를 이용하여 일부 수정을 거쳐 해당 quad내의 상하좌우에 문(doorPrefabClone)이 생성되도록함.
+     * 생성된 문들은 GameObject로 리스트에 저장됨.
+     * 생성된 문을 지우고 싶으면, Delete 키를 통해 지움.(리스트에서 doorPrefabClone이 삭제됨)
+     * 문은 벽과는 다르게, 회전축이 경첩 중심에 있도록 변경.
+     * 회전축이 경첩 중심에 있어, 좌우에따라 생성되는 프리팹이 다름.
+     * 텍스쳐이미지는 직접 그린것이 아닌, 적합한 이미지를 가져옴.
+     */
+
+    //문 프리팹 변수
     public GameObject DoorPrefab1_1;//문짝1-1
     public GameObject DoorPrefab1_2;//문짝1-2
     public GameObject DoorPrefab2_1;//문짝2-1
     public GameObject DoorPrefab2_2;//문짝2-2
-    private GameObject temp_door1;
-    private GameObject temp_door2;
+    private GameObject temp_door1; //현재 설치되어야 하는 문에 대한 프리팹 저장 변수.
+    private GameObject temp_door2; //현재 설치되어야 하는 문에 대한 프리팹 저장 변수.
 
     private GridPos gridpos; //GridPos로 부터 가져온 마우스 좌표.
 
     // Start is called before the first frame update
-    List<GameObject> doorCloneList = new List<GameObject>();
-    int cloneNum = 0;
+    List<GameObject> doorCloneList = new List<GameObject>(); //문 prefabClone 리스트에 저장.
+    int cloneNum = 0; //문prefab클론 생성 개수.
     private Vector3 mouse_Pos;
-    private Vector3 tempPosLeft;
-    private Vector3 tempPosRight;
-    private Vector3 tempPosUp;
-    private Vector3 tempPosDown;
+    private Vector3 tempPosLeft; //중복 설치 방지를 위해 이전에 설치된 문이 놓인 좌표 임시 저장.
+    private Vector3 tempPosRight; //중복 설치 방지를 위해 이전에 설치된 문이 놓인 좌표 임시 저장.
+    private Vector3 tempPosUp; //중복 설치 방지를 위해 이전에 설치된 문이 놓인 좌표 임시 저장.
+    private Vector3 tempPosDown; //중복 설치 방지를 위해 이전에 설치된 문이 놓인 좌표 임시 저장.
     private bool createPossibleDoor = false;
     private bool doubleCheckLeft = false; //문 중복 생성 체크
     private bool doubleCheckRight = false; //문 중복 생성 체크
@@ -34,7 +48,7 @@ public class CreateDoor : MonoBehaviour
         temp_door2 = DoorPrefab1_2;
     }
 
-    //temp_door 에 프리팹 설정.
+    //temp_door 에 프리팹 설정 함수
     public void setDoorPrefab1()
     {
         temp_door1 = DoorPrefab1_1;
@@ -51,7 +65,7 @@ public class CreateDoor : MonoBehaviour
     void Update()
     {
         
-        //벽설치 모드 On / Off
+        //문설치 모드 On / Off
         if (GameObject.Find("control").GetComponent<control>().mode == 1 && GameObject.Find("control").GetComponent<control>().mode_1 == 3)
         {
             createPossibleDoor = true;
@@ -62,7 +76,7 @@ public class CreateDoor : MonoBehaviour
         }
 
 
-        //상하좌우 키보드를 누를 상태에서 마우스를 끌고가면 벽 생성.
+        //문이 하나의 격자 내에서 중복 생성되는 것을 방지하는 조건문.
         if (tempPosLeft != GameObject.Find("GridPos").GetComponent<GridPos>().mouse_Pos)
         {
             doubleCheckLeft = true;
@@ -79,6 +93,8 @@ public class CreateDoor : MonoBehaviour
         {
             doubleCheckDown = true;
         }
+
+        //상하좌우 선택을 하고, 마우스 왼쪽을 클릭한 상태에서 끌고가면 문 생성(왼쪽문)
         if (Input.GetMouseButton(0) == true && createPossibleDoor == true && doubleCheckLeft && GameObject.Find("control").GetComponent<control>().mode_1_direction == 3)
         {
             gridpos = GameObject.Find("GridPos").GetComponent<GridPos>();
@@ -95,6 +111,7 @@ public class CreateDoor : MonoBehaviour
             doubleCheckLeft = false;
 
         }
+        //상하좌우 선택을 하고, 마우스 왼쪽을 클릭한 상태에서 끌고가면 문 생성(오른쪽문)
         else if (Input.GetMouseButton(0) == true && createPossibleDoor == true && doubleCheckRight && GameObject.Find("control").GetComponent<control>().mode_1_direction == 4)
         {
             gridpos = GameObject.Find("GridPos").GetComponent<GridPos>();
@@ -110,6 +127,7 @@ public class CreateDoor : MonoBehaviour
             cloneNum += 1;
             doubleCheckRight = false;
         }
+        //상하좌우 선택을 하고, 마우스 왼쪽을 클릭한 상태에서 끌고가면 문 생성(위쪽문)
         else if (Input.GetMouseButton(0) == true && createPossibleDoor == true && doubleCheckUp && GameObject.Find("control").GetComponent<control>().mode_1_direction == 1)
         {
             gridpos = GameObject.Find("GridPos").GetComponent<GridPos>();
@@ -126,7 +144,7 @@ public class CreateDoor : MonoBehaviour
             doubleCheckUp = false;
 
         }
-
+        //상하좌우 선택을 하고, 마우스 왼쪽을 클릭한 상태에서 끌고가면 벽 생성(아래쪽벽)
         else if (Input.GetMouseButton(0) == true && createPossibleDoor == true && doubleCheckDown && GameObject.Find("control").GetComponent<control>().mode_1_direction == 2)
         {
             gridpos = GameObject.Find("GridPos").GetComponent<GridPos>();
