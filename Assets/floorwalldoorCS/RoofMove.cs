@@ -12,7 +12,7 @@ public class RoofMove : MonoBehaviour
     {
         GameObject go = Instantiate(roof) as GameObject;
         roofPos.x = 10.0f;
-        roofPos.y = 2.4f;
+        roofPos.y = 2.6f;
         roofPos.z = 10.0f;
         go.transform.position = roofPos;
     }
