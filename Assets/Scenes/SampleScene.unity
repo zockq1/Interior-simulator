@@ -257,6 +257,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6433211275398135020, guid: 1792259efebbc034b8f58fc76edf5210, type: 3}
+      propertyPath: m_Text
+      value: "\uB3C4\uBA74 \uBAA8\uB4DC \uC870\uC791\uBC95\n+ WASD - \uCE74\uBA54\uB77C
+        \uC774\uB3D9(\uC55E\uB4A4\uC88C\uC6B0)\r\n+ \uB9C8\uC6B0\uC2A4 \uD720 - \uC90C\uC778/\uC90C\uC544\uC6C3\n+
+        \uB9C8\uC6B0\uC2A4 \uC88C\uD074\uB9AD - \uBC14\uB2E5, \uBCBD, \uBB38 \uBC30\uCE58\n+
+        \uB9C8\uC6B0\uC2A4 \uC6B0\uD074\uB9AD - \uBC14\uB2E5, \uBCBD, \uBB38 \uC0AD\uC81C "
+      objectReference: {fileID: 0}
     - target: {fileID: 6433211276191168346, guid: 1792259efebbc034b8f58fc76edf5210, type: 3}
       propertyPath: m_Pivot.x
       value: 0
