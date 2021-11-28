@@ -104,7 +104,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -837,7 +837,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 8829c8abd943f0646890e83f0908ffd3
+    spriteID: 0685b2a02ee06ee4094680a33cded609
     internalID: 0
     vertices: []
     indices: 
