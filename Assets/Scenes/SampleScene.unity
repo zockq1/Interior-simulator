@@ -740,6 +740,10 @@ PrefabInstance:
       propertyPath: CONTROL
       value: 
       objectReference: {fileID: 1745398787}
+    - target: {fileID: 4552484228127414771, guid: 2f8860b0f87cf6e4d8f297e687f57b01, type: 3}
+      propertyPath: CONTROL
+      value: 
+      objectReference: {fileID: 1745398787}
     - target: {fileID: 6433211276191168346, guid: 2f8860b0f87cf6e4d8f297e687f57b01, type: 3}
       propertyPath: m_Pivot.x
       value: 0
